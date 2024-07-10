@@ -28,6 +28,8 @@ public:
     bool verificarCedula(const std::string& cedula);
     void insertar(Persona dato);
     void ordenar(int criterio);
+    void ordenarBurbuja(int criterio);
+    void ordenarCaracteresBurbuja();
     void ordenarCaracteres();
     std::string obtenerContenidoOrdenado() const;
     void imprimir() const;
