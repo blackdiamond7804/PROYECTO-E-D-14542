@@ -81,7 +81,7 @@ int main() {
                 break;
             case ORDENAMIENTO_DISTRIBUCION:
                 // Llamar a la función de ordenamiento de Distribución
-                cout << "Ordenamiento de Distribución seleccionado." << endl;
+                MenuDistribucion();
                 break;
             }
         }

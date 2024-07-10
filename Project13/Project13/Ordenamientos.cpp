@@ -1,5 +1,7 @@
 #include "Ordenamientos.h"
 
+
+
 void shellSortPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio) {
     if (!cabeza || cabeza == cola) return;
 
@@ -60,3 +62,97 @@ void shellSort(std::string& str) {
         }
     }
 }
+
+void BucketSort(Nodo* cabeza, Nodo* cola, bool esCircular, int n)
+{
+    if (!cabeza) return;
+
+    int cant = 0;
+    Nodo* actual = cabeza;
+    do {
+        cant++;
+        actual = actual->siguiente;
+    } while (actual != (esCircular ? cabeza : nullptr));
+
+    Lista** listaB = new Lista * [cant];
+
+    for (int i = 0; i < cant; i++) {
+        std::function<bool(Persona, Persona)> comp;
+        if (n == 1) {
+            comp = [](Persona a, Persona b) { return a.cedula < b.cedula; };
+        }
+        else if (n == 2) {
+            comp = [](Persona a, Persona b) { return a.nombre < b.nombre; };
+        }
+        else if (n == 3) {
+            comp = [](Persona a, Persona b) { return a.segundoNombre < b.segundoNombre; };
+        }
+        else if (n == 4) {
+            comp = [](Persona a, Persona b) { return a.apellido < b.apellido; };
+        }
+        else if (n == 5) {
+            comp = [](Persona a, Persona b) { return a.getContrasena() < b.getContrasena(); };
+        }
+        listaB[i] = new Lista(comp);  // Pasar la comparación y el valor circular
+    }
+
+    actual = cabeza;
+    do {
+        Persona valor = actual->dato;
+        int indB;
+        if (n == 1) {
+            indB = calcularIndice(valor.cedula, cant);
+        }
+        else if (n == 2) {
+            indB = calcularIndice(valor.nombre, cant);
+        }
+        else if (n == 3) {
+            indB = calcularIndice(valor.segundoNombre, cant);
+        }
+        else if (n == 4) {
+            indB = calcularIndice(valor.apellido, cant);
+        }
+        else if (n == 5) {
+            indB = calcularIndice(valor.getContrasena(), cant);
+        }
+        listaB[indB]->insertarOrdenado(valor);
+        actual = actual->siguiente;
+    } while (actual != (esCircular ? cabeza : nullptr));
+
+    while (cabeza != cola) {
+        Nodo* temp = cabeza;
+        cabeza = cabeza->siguiente;
+        delete temp;
+    }
+    cabeza = nullptr;
+    cola = nullptr;
+
+    for (int i = 0; i < cant; i++) {
+        while (listaB[i]->cantidad() > 0) {
+            Persona valor = listaB[i]->eliminarPrimero();
+            Nodo* nuevo = new Nodo(valor);
+            if (!cabeza) {
+                cabeza = nuevo;
+                cola = nuevo;
+                if (esCircular) {
+                    cabeza->siguiente = cabeza;
+                    cabeza->anterior = cabeza;
+                }
+            }
+            else {
+                cola->siguiente = nuevo;
+                nuevo->anterior = cola;
+                if (esCircular) {
+                    nuevo->siguiente = cabeza;
+                    cabeza->anterior = nuevo;
+                }
+                cola = nuevo;
+            }
+        }
+        delete listaB[i];
+    }
+    delete[] listaB;
+
+
+}
+

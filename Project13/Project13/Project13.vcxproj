@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Generaciones.h" />
+    <ClInclude Include="Hash.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="MenuShell.h" />
     <ClInclude Include="Nodo.h" />

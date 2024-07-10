@@ -1,0 +1,8 @@
+Nombre: Andres Alberto,, Apellido: Alvarez,, Cedula: 1753688512
+Correo: aaAlvarez@espe.edu.ec, Contrasenia inicial: zaoeravla2,, Contrasenia: bcqgtcxnc
+Nombre: Carla Belinda, Apellido: Perez, Cedula: 1713310850
+Correo: cbPerez@espe.edu.ec, Contrasenia inicial: zcaerep, Contrasenia: becgtgr
+Nombre: Juan Pedro,, Apellido: Caiza,, Cedula: 1710520642
+Correo: jpCaiza@espe.edu.ec, Contrasenia inicial: ajoziac,, Contrasenia: clqbkce
+Nombre: Sebas Enrique,, Apellido: Parra,, Cedula: 1753688215
+Correo: seParra@espe.edu.ec, Contrasenia inicial: aserrap1,, Contrasenia: cugttcr

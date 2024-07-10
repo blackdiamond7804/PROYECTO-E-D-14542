@@ -5,6 +5,11 @@ Lista::Lista(bool circular, const std::string& nombreArchivo)
     cargarDesdeArchivo(nombreArchivo);
 }
 
+Lista::Lista(std::function<bool(Persona,Persona)> comp, const std::string& nombreArchivo)
+    :cabeza(nullptr), cola(nullptr), esCircular(false), comparar(comp){
+    cargarDesdeArchivo(nombreArchivo);
+}
+
 Lista::~Lista() {
     if (!esCircular) {
         Nodo* actual = cabeza;
@@ -222,4 +227,114 @@ void Lista::agregarAlArchivo(const Persona& dato) const {
     archivo << "Correo: " << dato.getCorreo() << "@espe.edu.ec"
         << ", Contrasenia inicial: " << dato.getContrasenaInicial()
         << ", Contrasenia: " << dato.getContrasena() << std::endl;
+}
+
+int Lista::cantidad() {
+    if (cabeza == nullptr) {
+        return 0;
+    }
+    else {
+        int cant = 0;
+        Nodo* aux = cabeza;
+
+        do {
+            cant++;
+            aux = aux->siguiente;
+        } while (aux != nullptr);
+
+        return cant;
+    }
+}
+
+Persona Lista::datoEn(int posicion) {
+    if (cantidad() == 0 || posicion > cantidad()) { 
+        std::cout << "No hay ningun nodo" << std::endl;
+    }
+
+    Nodo* aux = cabeza;
+
+    for (int i = 1; i < posicion; i++) aux = aux->siguiente;
+
+    return aux->dato;
+}
+
+void Lista::eliminar(int posicion) {
+    if (cantidad() >= posicion && posicion > 0) {
+        Nodo* aux = cabeza;
+        Nodo* anterior = cabeza;
+
+        for (int i = 1; i < posicion - 1; i++) anterior = anterior->siguiente;
+        if (posicion != 1) aux = anterior->siguiente;
+        if (aux != cabeza) anterior->siguiente = aux->siguiente;
+        if (aux == cabeza) cabeza = aux->siguiente;
+    }
+}
+
+void Lista::recorrer(std::function<void(Persona)> callback) {
+    Nodo* temp = cabeza;
+    while (temp) {
+        callback(temp->dato);
+        temp = temp->siguiente;
+    }
+}
+
+void Lista::insertarOrdenado(Persona per) {
+    Nodo* nuevo = new Nodo(per);
+    if (cabeza == nullptr || comparar(per, cabeza->dato)) {
+        nuevo->siguiente = cabeza;
+        if (cabeza != nullptr) {
+            cabeza->anterior = nuevo;
+        }
+        cabeza = nuevo;
+        return;
+    }
+
+    Nodo* actual = cabeza;
+    while (actual->siguiente != nullptr && !comparar(per, actual->siguiente->dato)) {
+        actual = actual->siguiente;
+    }
+
+    nuevo->siguiente = actual->siguiente;
+    if (actual->siguiente != nullptr) {
+        actual->siguiente->anterior = nuevo;
+    }
+    actual->siguiente = nuevo;
+    nuevo->anterior = actual;
+}
+
+Persona Lista::eliminarPrimero() {
+    Nodo* temp = cabeza;
+    cabeza = cabeza->siguiente;
+    if (cabeza) {
+        cabeza->anterior = nullptr;
+    }
+
+    Persona dato = temp->dato;
+    delete temp;
+    return dato;
+}
+
+void Lista::insertarUltimo(Persona persona) {
+    Nodo* nuevo = new Nodo(persona);
+    if (cabeza ==nullptr) {
+        cabeza = nuevo;
+    }
+    else {
+        Nodo* aux = cabeza;
+        while (aux->siguiente) {
+            aux = aux->siguiente;
+        }
+        aux->siguiente = nuevo;
+        nuevo->anterior = aux;
+    }
+}
+
+void Lista::ordenarDistribucion(int criterio) {
+    if (criterio >= 1 && criterio <= 3) {
+        BucketSort(cabeza,cola,esCircular,criterio);
+        guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
+    }
+    else if (criterio == 4) {
+        ordenarCaracteres();
+    }
 }
