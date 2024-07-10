@@ -7,5 +7,6 @@
 
 void setConsoleColor(WORD color);
 void MenuShellMain();
+void MenuBurbujaMain();
 
 #endif // MENUSHELL_H
