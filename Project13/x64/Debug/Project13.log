@@ -1,0 +1,7 @@
+﻿  Lista.cpp
+C:\Users\DivinaGT\Desktop\Codigos de prueba\Project13Bueno\Project13\Project13\Lista.cpp(82,23): warning C4267: 'return': conversión de 'size_t' a 'int'; posible pérdida de datos
+  MenuRadix.cpp
+  MenuShell.cpp
+  main.cpp
+  Generando código...
+  Project13.vcxproj -> C:\Users\DivinaGT\Desktop\Codigos de prueba\Project13Bueno\Project13\x64\Debug\Project13.exe

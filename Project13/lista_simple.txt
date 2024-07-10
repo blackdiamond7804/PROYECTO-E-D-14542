@@ -1,0 +1,4 @@
+Nombre: Josue Andel,, Apellido: Chango,, Cedula: 1720901980
+Correo: jaChango@espe.edu.ec, Contrasenia inicial: ojlgnahc,, Contrasenia: qlnipcje
+Nombre: Azaela Skarlete,, Apellido: Parra,, Cedula: 1710753144
+Correo: asParra@espe.edu.ec, Contrasenia inicial: aaerrap1,, Contrasenia: ccgttcr
