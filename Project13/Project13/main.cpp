@@ -65,7 +65,7 @@ int main() {
                 break;
             case ORDENAMIENTO_BURBUJA:
                 // Llamar a la funci�n de ordenamiento de Burbuja
-                cout << "Ordenamiento de Burbuja seleccionado." << endl;
+                MenuBurbujaMain();
                 break;
             case ORDENAMIENTO_SHELL:
                 // Llamar a la funci�n de ordenamiento de Shell
