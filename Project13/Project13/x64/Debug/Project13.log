@@ -1,6 +1,0 @@
-﻿  main.cpp
-  MenuShell.cpp
-  Ordenamientos.cpp
-C:\Users\User\source\repos\Project13\Project13\Ordenamientos.cpp(50,11): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-  Generando código...
-  Project13.vcxproj -> C:\Users\User\source\repos\Project13\x64\Debug\Project13.exe
