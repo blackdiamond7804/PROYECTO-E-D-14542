@@ -35,6 +35,9 @@ public:
     void cargarDesdeArchivo(const std::string& nombreArchivo);
     void insertarDesdeArchivo(Persona dato);
     void agregarAlArchivo(const Persona& dato) const;
+
+    void ordenarIntercambio(int criterio);
+    void ordenarCaracteresIntercambio();
 };
 
 #endif // LISTA_H

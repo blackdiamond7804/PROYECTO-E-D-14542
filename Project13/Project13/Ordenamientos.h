@@ -11,4 +11,7 @@
 void shellSortPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio);
 void shellSort(std::string& str);
 
+void intercambioPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio);
+void intercambio(std::string& str);
+
 #endif // ORDENAMIENTOS_H

@@ -7,5 +7,6 @@
 
 void setConsoleColor(WORD color);
 void MenuShellMain();
+void MenuIntercambio();
 
 #endif // MENUSHELL_H

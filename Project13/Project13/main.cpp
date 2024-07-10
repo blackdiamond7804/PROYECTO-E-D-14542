@@ -61,7 +61,7 @@ int main() {
             switch (opcion) {
             case ORDENAMIENTO_INTERCAMBIO:
                 // Llamar a la función de ordenamiento de Intercambio
-                cout << "Ordenamiento de Intercambio seleccionado." << endl;
+                MenuIntercambio();
                 break;
             case ORDENAMIENTO_BURBUJA:
                 // Llamar a la función de ordenamiento de Burbuja

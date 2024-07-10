@@ -60,3 +60,87 @@ void shellSort(std::string& str) {
         }
     }
 }
+
+void intercambioPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio) {
+    if (!cabeza) return;
+    bool swapped;
+    Nodo* actual;
+    Nodo* lastPtr = nullptr;
+
+    if (esCircular) {
+        do {
+            swapped = false;
+            actual = cabeza;
+
+            do {
+                Nodo* siguiente = actual->siguiente;
+                if (siguiente == cabeza) break;
+
+                bool condition = false;
+                switch (criterio) {
+                case 1:
+                    condition = actual->dato.nombre > siguiente->dato.nombre;
+                    break;
+                case 2:
+                    condition = actual->dato.segundoNombre > siguiente->dato.segundoNombre;
+                    break;
+                case 3:
+                    condition = actual->dato.apellido > siguiente->dato.apellido;
+                    break;
+                }
+
+                if (condition) {
+                    std::swap(actual->dato, siguiente->dato);
+                    swapped = true;
+                }
+                actual = siguiente;
+            } while (actual != lastPtr);
+
+            lastPtr = actual;
+        } while (swapped);
+    }
+    else {
+        do {
+            swapped = false;
+            actual = cabeza;
+
+            while (actual->siguiente != lastPtr) {
+                Nodo* siguiente = actual->siguiente;
+
+                bool condition = false;
+                switch (criterio) {
+                case 1:
+                    condition = actual->dato.nombre > siguiente->dato.nombre;
+                    break;
+                case 2:
+                    condition = actual->dato.segundoNombre > siguiente->dato.segundoNombre;
+                    break;
+                case 3:
+                    condition = actual->dato.apellido > siguiente->dato.apellido;
+                    break;
+                }
+
+                if (condition) {
+                    std::swap(actual->dato, siguiente->dato);
+                    swapped = true;
+                }
+                actual = siguiente;
+            }
+            lastPtr = actual;
+        } while (swapped);
+    }
+}
+
+void intercambio(std::string& str) {
+    bool swapped;
+    for (size_t i = 0; i < str.size() - 1; ++i) {
+        swapped = false;
+        for (size_t j = 0; j < str.size() - i - 1; ++j) {
+            if (str[j] > str[j + 1]) {
+                std::swap(str[j], str[j + 1]);
+                swapped = true;
+            }
+        }
+        if (!swapped) break;
+    }
+}

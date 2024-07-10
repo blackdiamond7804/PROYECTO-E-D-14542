@@ -223,3 +223,26 @@ void Lista::agregarAlArchivo(const Persona& dato) const {
         << ", Contrasenia inicial: " << dato.getContrasenaInicial()
         << ", Contrasenia: " << dato.getContrasena() << std::endl;
 }
+
+void Lista::ordenarIntercambio(int criterio) {
+    if (criterio >= 1 && criterio <= 3) {
+        intercambioPersonas(cabeza, cola, esCircular, criterio);
+        guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
+    }
+    else if (criterio == 4) {
+        ordenarCaracteresIntercambio();
+    }
+}
+
+void Lista::ordenarCaracteresIntercambio() {
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        intercambio(actual->dato.nombre);
+        intercambio(actual->dato.apellido);
+        actual = actual->siguiente;
+        if (esCircular && actual == cabeza) break;
+    }
+
+    std::string contenidoOrdenado = obtenerContenidoOrdenado();
+    crearBackup(nombreArchivo, contenidoOrdenado); // Crear un backup con los datos ordenados
+}
