@@ -60,3 +60,54 @@ void shellSort(std::string& str) {
         }
     }
 }
+void bubbleSortPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio) {
+    if (!cabeza || cabeza == cola) return;
+
+    bool intercambiado;
+    Nodo* actual;
+    Nodo* fin = nullptr;
+
+    do {
+        intercambiado = false;
+        actual = cabeza;
+
+        while (actual->siguiente != fin) {
+            Nodo* siguiente = actual->siguiente;
+            bool debeIntercambiar = false;
+
+            switch (criterio) {
+                case 1:
+                    debeIntercambiar = actual->dato.nombre > siguiente->dato.nombre;
+                    break;
+                case 2:
+                    debeIntercambiar = actual->dato.apellido > siguiente->dato.apellido;
+                    break;
+                case 3:
+                    debeIntercambiar = actual->dato.cedula > siguiente->dato.cedula;
+                    break;
+            }
+
+            if (debeIntercambiar) {
+                Persona tempDato = actual->dato;
+                actual->dato = siguiente->dato;
+                siguiente->dato = tempDato;
+                intercambiado = true;
+            }
+
+            actual = siguiente;
+        }
+
+        fin = actual;
+    } while (intercambiado);
+}
+void bubbleSort(std::string& str) {
+        std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+        int n = str.length();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (str[j] > str[j + 1]) {
+                    std::swap(str[j], str[j + 1]);
+                }
+            }
+        }
+    }
