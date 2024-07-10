@@ -29,6 +29,8 @@ public:
     void insertar(Persona dato);
     void ordenar(int criterio);
     void ordenarCaracteres();
+    void ordenarQuicksort(int criterio);
+    void ordenarCaracteresQuicksort();
     std::string obtenerContenidoOrdenado() const;
     void imprimir() const;
     void guardarEnArchivo(const std::string& nombreArchivo) const;

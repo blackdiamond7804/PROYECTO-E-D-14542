@@ -1,4 +1,4 @@
-#include "MenuShell.h"
+#include "MenuQuicksort.h"
 #include <iostream>
 #include <conio.h>
 #include <windows.h>
@@ -24,12 +24,12 @@ enum OpcionesSubMenu {
     NUM_OPCIONES_SUBMENU
 };
 
-void setConsoleColor(WORD color) {
+void setConsoleColorQS(WORD color) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, color);
 }
 
-void mostrarMenu(int opcion) {
+void mostrarMenuQS(int opcion) {
     system("cls");
     const char* opciones[] = {
         "Lista Simple",
@@ -43,9 +43,9 @@ void mostrarMenu(int opcion) {
     cout << "******************************" << endl;
     for (int i = 0; i < NUM_OPCIONES; ++i) {
         if (i == opcion) {
-            setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
+            setConsoleColorQS(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
             cout << " --> " << opciones[i] << "\n";
-            setConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
+            setConsoleColorQS(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
         }
         else {
             cout << "     " << opciones[i] << "\n";
@@ -54,7 +54,7 @@ void mostrarMenu(int opcion) {
     cout << "******************************" << endl;
 }
 
-void mostrarSubMenu(int opcion) {
+void mostrarSubMenuQS(int opcion) {
     system("cls");
     const char* opciones[] = {
         "Ingresar datos",
@@ -66,9 +66,9 @@ void mostrarSubMenu(int opcion) {
     cout << "******************************" << endl;
     for (int i = 0; i < NUM_OPCIONES_SUBMENU; ++i) {
         if (i == opcion) {
-            setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
+            setConsoleColorQS(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
             cout << " --> " << opciones[i] << "\n";
-            setConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
+            setConsoleColorQS(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
         }
         else {
             cout << "     " << opciones[i] << "\n";
@@ -77,7 +77,7 @@ void mostrarSubMenu(int opcion) {
     cout << "******************************" << endl;
 }
 
-void mostrarMenuOrden(int opcion) {
+void mostrarMenuOrdenQS(int opcion) {
     system("cls");
     const char* opciones[] = {
         "Ordenar por Nombre",
@@ -92,9 +92,9 @@ void mostrarMenuOrden(int opcion) {
     cout << "******************************" << endl;
     for (int i = 0; i < 5; ++i) { // 4 opciones + "Regresar"
         if (i == opcion) {
-            setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
+            setConsoleColorQS(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
             cout << " --> " << opciones[i] << "\n";
-            setConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
+            setConsoleColorQS(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
         }
         else {
             cout << "     " << opciones[i] << "\n";
@@ -103,7 +103,7 @@ void mostrarMenuOrden(int opcion) {
     cout << "******************************" << endl;
 }
 
-void ingresarDatos(Lista& lista) {
+void ingresarDatosQS(Lista& lista) {
     string cedula = ingresarCedula();
 
     if (lista.verificarCedula(cedula)) {
@@ -123,12 +123,12 @@ void ingresarDatos(Lista& lista) {
     lista.insertar(p);
 }
 
-void subMenuLista(Lista& lista) {
+void subMenuListaQuicksort(Lista& lista) {
     int subopcion = 0;
     bool continuar = true;
 
     while (continuar) {
-        mostrarSubMenu(subopcion);
+        mostrarSubMenuQS(subopcion);
 
         int tecla = _getch();
         switch (tecla) {
@@ -141,13 +141,13 @@ void subMenuLista(Lista& lista) {
         case 13: // Enter
             switch (subopcion) {
             case INGRESAR_DATOS:
-                ingresarDatos(lista);
+                ingresarDatosQS(lista);
                 break;
             case ORDENAR_LISTA: {
                 int criterio = 0;
                 bool continuarOrden = true;
                 while (continuarOrden) {
-                    mostrarMenuOrden(criterio);
+                    mostrarMenuOrdenQS(criterio);
 
                     int teclaOrden = _getch();
                     switch (teclaOrden) {
@@ -162,7 +162,7 @@ void subMenuLista(Lista& lista) {
                             continuarOrden = false;
                         }
                         else {
-                            lista.ordenar(criterio + 1); // Ajustar criterio seg�n implementaci�n
+                            lista.ordenarQuicksort(criterio + 1); // Ajustar criterio seg�n implementaci�n
                         }
                         break;
                     }
@@ -185,7 +185,7 @@ void subMenuLista(Lista& lista) {
     }
 }
 
-void MenuShellMain() {
+void MenuQuicksortMain() {
     Lista listaSimple(false, "lista_simple.txt");
     Lista listaDoble(false, "lista_doble.txt");
     Lista listaCircular(true, "lista_circular.txt");
@@ -193,7 +193,7 @@ void MenuShellMain() {
     bool continuar = true;
 
     while (continuar) {
-        mostrarMenu(opcion);
+        mostrarMenuQS(opcion);
 
         int tecla = _getch();
         switch (tecla) {
@@ -206,13 +206,13 @@ void MenuShellMain() {
         case 13: // Enter
             switch (opcion) {
             case LISTA_SIMPLE:
-                subMenuLista(listaSimple);
+                subMenuListaQuicksort(listaSimple);
                 break;
             case LISTA_DOBLE:
-                subMenuLista(listaDoble);
+                subMenuListaQuicksort(listaDoble);
                 break;
             case LISTA_CIRCULAR:
-                subMenuLista(listaCircular);
+                subMenuListaQuicksort(listaCircular);
                 break;
             case SALIR:
                 continuar = false;

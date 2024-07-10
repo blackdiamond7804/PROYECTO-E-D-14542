@@ -60,3 +60,65 @@ void shellSort(std::string& str) {
         }
     }
 }
+
+void quickSortPersonas(Nodo*& cabeza, Nodo*& cola, bool esCircular, int criterio) {
+    if (cabeza == nullptr || cabeza == cola) return;
+
+    Nodo *pivot = cola;
+    Nodo *i = cabeza->anterior;
+    for (Nodo *j = cabeza; j != cola; j = j->siguiente) {
+        bool menor = false;
+        switch (criterio) {
+            case 1: menor = j->dato.nombre < pivot->dato.nombre; break;
+            case 2: menor = j->dato.apellido < pivot->dato.apellido; break;
+            case 3: menor = j->dato.cedula < pivot->dato.cedula; break;
+        }
+        if (menor) {
+            if (i == nullptr) i = cabeza;
+            else i = i->siguiente;
+            std::swap(i->dato, j->dato);
+        }
+    }
+    if (i == nullptr) i = cabeza;
+    else i = i->siguiente;
+    std::swap(i->dato, pivot->dato);
+
+    Nodo *pi = (i == nullptr) ? cabeza : i;
+    Nodo *ni = (i == nullptr || i->siguiente == nullptr) ? cola : i->siguiente;
+
+    if (pi != cabeza) quickSortPersonas(cabeza, pi->anterior, esCircular, criterio);
+    if (ni != cola) quickSortPersonas(ni, cola, esCircular, criterio);
+}
+
+void quickSort(std::string& str) {
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+
+    int n = str.length();
+
+    if (n <= 1) return;
+
+    char pivot = str[n / 2];
+    str[n / 2] = str[0];
+    str[0] = pivot;
+
+    int i = 1;
+    for (int j = 1; j < n; j++) {
+        if (str[j] < pivot) {
+            char temp = str[j];
+            str[j] = str[i];
+            str[i] = temp;
+            i++;
+        }
+    }
+
+    str[0] = str[i - 1];
+    str[i - 1] = pivot;
+
+    std::string left = str.substr(0, i - 1);
+    std::string right = str.substr(i);
+
+    quickSort(left);
+    quickSort(right);
+
+    str = left + pivot + right;
+}

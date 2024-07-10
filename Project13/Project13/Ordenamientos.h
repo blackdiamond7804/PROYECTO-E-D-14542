@@ -10,5 +10,7 @@
 
 void shellSortPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio);
 void shellSort(std::string& str);
+void quickSortPersonas(Nodo*& cabeza, Nodo*& cola, bool esCircular, int criterio);
+void quickSort(std::string& str);
 
 #endif // ORDENAMIENTOS_H

@@ -64,7 +64,7 @@ void Lista::insertar(Persona dato) {
 
     cedulasRegistradas.insert(dato.cedula);
 
-    // Agregar al archivo después de insertar
+    // Agregar al archivo despuï¿½s de insertar
     agregarAlArchivo(dato);
 }
 
@@ -83,6 +83,29 @@ void Lista::ordenarCaracteres() {
     while (actual != nullptr) {
         shellSort(actual->dato.nombre);
         shellSort(actual->dato.apellido);
+        actual = actual->siguiente;
+        if (esCircular && actual == cabeza) break;
+    }
+
+    std::string contenidoOrdenado = obtenerContenidoOrdenado();
+    crearBackup(nombreArchivo, contenidoOrdenado); // Crear un backup con los datos ordenados
+}
+
+void Lista::ordenarQuicksort(int criterio) {
+    if (criterio >= 1 && criterio <= 3) {
+        quickSortPersonas(cabeza, cola, esCircular, criterio);
+        guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
+    }
+    else if (criterio == 4) {
+        ordenarCaracteresQuicksort();
+    }
+}
+
+void Lista::ordenarCaracteresQuicksort() {
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        quickSort(actual->dato.nombre);
+        quickSort(actual->dato.apellido);
         actual = actual->siguiente;
         if (esCircular && actual == cabeza) break;
     }

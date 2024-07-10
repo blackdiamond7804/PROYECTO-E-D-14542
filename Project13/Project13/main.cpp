@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <windows.h>
 #include "MenuShell.h"
+#include "MenuQuicksort.h"
 
 using namespace std;
 
@@ -60,28 +61,28 @@ int main() {
         case 13: // Enter
             switch (opcion) {
             case ORDENAMIENTO_INTERCAMBIO:
-                // Llamar a la función de ordenamiento de Intercambio
+                // Llamar a la funciï¿½n de ordenamiento de Intercambio
                 cout << "Ordenamiento de Intercambio seleccionado." << endl;
                 break;
             case ORDENAMIENTO_BURBUJA:
-                // Llamar a la función de ordenamiento de Burbuja
+                // Llamar a la funciï¿½n de ordenamiento de Burbuja
                 cout << "Ordenamiento de Burbuja seleccionado." << endl;
                 break;
             case ORDENAMIENTO_SHELL:
-                // Llamar a la función de ordenamiento de Shell
+                // Llamar a la funciï¿½n de ordenamiento de Shell
                 MenuShellMain();
                 break;
             case ORDENAMIENTO_RAPIDO:
-                // Llamar a la función de ordenamiento Rápido
-                cout << "Ordenamiento Rápido seleccionado." << endl;
+                // Llamar a la funciï¿½n de ordenamiento Rï¿½pido
+                MenuQuicksortMain();
                 break;
             case ORDENAMIENTO_RADITZ:
-                // Llamar a la función de ordenamiento Raditz
+                // Llamar a la funciï¿½n de ordenamiento Raditz
                 cout << "Ordenamiento Raditz seleccionado." << endl;
                 break;
             case ORDENAMIENTO_DISTRIBUCION:
-                // Llamar a la función de ordenamiento de Distribución
-                cout << "Ordenamiento de Distribución seleccionado." << endl;
+                // Llamar a la funciï¿½n de ordenamiento de Distribuciï¿½n
+                cout << "Ordenamiento de Distribuciï¿½n seleccionado." << endl;
                 break;
             }
         }
