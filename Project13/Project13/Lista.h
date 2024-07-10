@@ -25,7 +25,7 @@ private:
 
 public:
     Lista(bool circular = false, const std::string& nombreArchivo = "datos_personas.txt");
-    Lista(std::function<bool(Persona, Persona)> comparar, const std::string& nombreArchivo = "datos_personas.txt");
+
     ~Lista();
 
     bool verificarCedula(const std::string& cedula);
@@ -43,7 +43,7 @@ public:
     int cantidad();
     Persona datoEn(int);
     void recorrer(std::function<void(Persona)> callback);
-    void insertarOrdenado(Persona per);
+    void insertarOrdenado(Persona per,int);
     Persona eliminarPrimero();
     void insertarUltimo(Persona persona);
     void ordenarDistribucion(int criterio);

@@ -12,5 +12,5 @@
 
 void shellSortPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio);
 void shellSort(std::string& str);
-void BucketSort(Nodo* cabeza, Nodo* cola, bool esCircular, int n);
+void BucketSort(Nodo*& cabeza, Nodo*& cola, bool esCircular, int n);
 #endif // ORDENAMIENTOS_H

@@ -1,14 +1,12 @@
 #include "Lista.h"
 
+
+
 Lista::Lista(bool circular, const std::string& nombreArchivo)
     : cabeza(nullptr), cola(nullptr), esCircular(circular), nombreArchivo(nombreArchivo) {
     cargarDesdeArchivo(nombreArchivo);
 }
 
-Lista::Lista(std::function<bool(Persona,Persona)> comp, const std::string& nombreArchivo)
-    :cabeza(nullptr), cola(nullptr), esCircular(false), comparar(comp){
-    cargarDesdeArchivo(nombreArchivo);
-}
 
 Lista::~Lista() {
     if (!esCircular) {
@@ -278,28 +276,49 @@ void Lista::recorrer(std::function<void(Persona)> callback) {
     }
 }
 
-void Lista::insertarOrdenado(Persona per) {
-    Nodo* nuevo = new Nodo(per);
-    if (cabeza == nullptr || comparar(per, cabeza->dato)) {
-        nuevo->siguiente = cabeza;
-        if (cabeza != nullptr) {
-            cabeza->anterior = nuevo;
-        }
+void Lista::insertarOrdenado(Persona valor, int criterio) {
+    Nodo* nuevo = new Nodo(valor);
+    if (!cabeza) {
         cabeza = nuevo;
+        cola = nuevo;
         return;
     }
-
     Nodo* actual = cabeza;
-    while (actual->siguiente != nullptr && !comparar(per, actual->siguiente->dato)) {
+    while (actual) {
+        bool debeInsertar = false;
+        switch (criterio) {
+        case 1:
+            debeInsertar = valor.cedula < actual->dato.cedula;
+            break;
+        case 2:
+            debeInsertar = valor.nombre < actual->dato.nombre;
+            break;
+        case 3:
+            debeInsertar = valor.apellido < actual->dato.apellido;
+            break;
+        }
+        if (debeInsertar) {
+            if (actual == cabeza) {
+                nuevo->siguiente = cabeza;
+                cabeza->anterior = nuevo;
+                cabeza = nuevo;
+            }
+            else {
+                nuevo->siguiente = actual;
+                nuevo->anterior = actual->anterior;
+                actual->anterior->siguiente = nuevo;
+                actual->anterior = nuevo;
+            }
+            return;
+        }
+        if (!actual->siguiente) {
+            actual->siguiente = nuevo;
+            nuevo->anterior = actual;
+            cola = nuevo;
+            return;
+        }
         actual = actual->siguiente;
     }
-
-    nuevo->siguiente = actual->siguiente;
-    if (actual->siguiente != nullptr) {
-        actual->siguiente->anterior = nuevo;
-    }
-    actual->siguiente = nuevo;
-    nuevo->anterior = actual;
 }
 
 Persona Lista::eliminarPrimero() {

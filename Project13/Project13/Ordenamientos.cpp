@@ -63,8 +63,7 @@ void shellSort(std::string& str) {
     }
 }
 
-void BucketSort(Nodo* cabeza, Nodo* cola, bool esCircular, int n)
-{
+void BucketSort(Nodo*& cabeza, Nodo*& cola, bool esCircular, int n) {
     if (!cabeza) return;
 
     int cant = 0;
@@ -77,45 +76,28 @@ void BucketSort(Nodo* cabeza, Nodo* cola, bool esCircular, int n)
     Lista** listaB = new Lista * [cant];
 
     for (int i = 0; i < cant; i++) {
-        std::function<bool(Persona, Persona)> comp;
-        if (n == 1) {
-            comp = [](Persona a, Persona b) { return a.cedula < b.cedula; };
-        }
-        else if (n == 2) {
-            comp = [](Persona a, Persona b) { return a.nombre < b.nombre; };
-        }
-        else if (n == 3) {
-            comp = [](Persona a, Persona b) { return a.segundoNombre < b.segundoNombre; };
-        }
-        else if (n == 4) {
-            comp = [](Persona a, Persona b) { return a.apellido < b.apellido; };
-        }
-        else if (n == 5) {
-            comp = [](Persona a, Persona b) { return a.getContrasena() < b.getContrasena(); };
-        }
-        listaB[i] = new Lista(comp);  // Pasar la comparación y el valor circular
+        listaB[i] = new Lista();
     }
 
     actual = cabeza;
     do {
         Persona valor = actual->dato;
         int indB;
-        if (n == 1) {
+        switch (n) {
+        case 1:
             indB = calcularIndice(valor.cedula, cant);
-        }
-        else if (n == 2) {
+            break;
+        case 2:
             indB = calcularIndice(valor.nombre, cant);
-        }
-        else if (n == 3) {
-            indB = calcularIndice(valor.segundoNombre, cant);
-        }
-        else if (n == 4) {
+            break;
+        case 3:
             indB = calcularIndice(valor.apellido, cant);
+            break;
+        default:
+            indB = 0; // Asignar a un bucket predeterminado en caso de valor inválido
+            break;
         }
-        else if (n == 5) {
-            indB = calcularIndice(valor.getContrasena(), cant);
-        }
-        listaB[indB]->insertarOrdenado(valor);
+        listaB[indB]->insertarOrdenado(valor, n);
         actual = actual->siguiente;
     } while (actual != (esCircular ? cabeza : nullptr));
 
@@ -152,7 +134,4 @@ void BucketSort(Nodo* cabeza, Nodo* cola, bool esCircular, int n)
         delete listaB[i];
     }
     delete[] listaB;
-
-
 }
-
