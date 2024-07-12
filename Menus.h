@@ -14,6 +14,7 @@ void mostrarMenu(int opcion);
 void mostrarSubMenu(int opcion);
 void mostrarMenuOrden(int opcion);
 void ingresarDatos(Lista& lista);
+bool cedulaRegistradaEnArchivo(const string& cedula);
 
 void MenuShellMain();
 void subMenuListaShell(Lista& lista);

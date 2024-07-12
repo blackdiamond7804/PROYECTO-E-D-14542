@@ -101,7 +101,7 @@ void mostrarMenuOrden(int opcion) {
 void ingresarDatos(Lista& lista) {
     string cedula = ingresarCedula();
 
-    if (lista.verificarCedula(cedula)) {
+    if (lista.verificarCedula(cedula) || cedulaRegistradaEnArchivo(cedula)) {
         cout << "La cedula ya esta registrada. Intente con otra. " << endl;
         return;
     }
@@ -116,6 +116,28 @@ void ingresarDatos(Lista& lista) {
 
     Persona p(nombre, segundoNombre, apellido, cedula);
     lista.insertar(p);
+}
+
+bool cedulaRegistradaEnArchivo(const string& cedula) {
+    ifstream archivo("Datos_Personas.txt");
+    if (!archivo.is_open()) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return false;
+    }
+
+    string linea;
+    while (getline(archivo, linea)) {
+        size_t pos = linea.find("Cedula: ");
+        if (pos != string::npos) {
+            size_t start = pos + 8; // 8 es la longitud de "Cedula: "
+            size_t end = linea.find('\n', start);
+            string cedulaEnArchivo = linea.substr(start, end - start);
+            if (cedula == cedulaEnArchivo) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 void subMenuListaShell(Lista& lista) {
