@@ -1,8 +1,0 @@
-Nombre: Azaela Skarlete,,,,,,,,,, Apellido: Parra,,,,,,,,,, Cedula: 1710753144
-Correo: asParra@espe.edu.ec, Contrasenia inicial: aaerrap1,,,,,,,,,, Contrasenia: ccgttcr
-Nombre: Josue Andel,,,,,,,,,, Apellido: Chango,,,,,,,,,, Cedula: 1720901980
-Correo: jaChango@espe.edu.ec, Contrasenia inicial: ojlgnahc,,,,,,,,,, Contrasenia: qlnipcje
-Nombre: Zaith Alejandro, Apellido: Manangon, Cedula: 1753324449
-Correo: zaManangon@espe.edu.ec, Contrasenia inicial: nzoognanam, Contrasenia: pbqqipcpco
-Nombre: Juan Pedro,,,,,,,, Apellido: Caiza,,,,,,,, Cedula: 1753688215
-Correo: jpCaiza@espe.edu.ec, Contrasenia inicial: ajoziac,,,,,,,, Contrasenia: clqbkce

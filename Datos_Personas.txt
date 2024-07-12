@@ -1,0 +1,6 @@
+Nombre: Juan Pedro, Apellido: Garcia, Cedula: 1710520642
+Correo: jpGarcia@espe.edu.ec, Contrasenia inicial: ajoicrag, Contrasenia: clqketci
+Nombre: Vale Belinda, Apellido: Saltos, Cedula: 1753688215
+Correo: vbSaltos@espe.edu.ec, Contrasenia inicial: svaotlas1, Contrasenia: uxcqvncu
+Nombre: Peter Federico, Apellido: Valverde, Cedula: 1753688512
+Correo: pfValverde@espe.edu.ec, Contrasenia inicial: epodrevlav2, Contrasenia: grqftgxncx

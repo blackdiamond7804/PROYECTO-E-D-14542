@@ -4,9 +4,9 @@
 using namespace std;
 
 enum Opciones {
-    Datos_Personas,
-    Datos_Personas,
-    Datos_Personas,
+    LISTA_SIMPLE,
+    LISTA_DOBLE,
+    LISTA_CIRCULAR,
     SALIR,
     NUM_OPCIONES
 };
@@ -200,13 +200,13 @@ void MenuShellMain() {
             break;
         case 13: // Enter
             switch (opcion) {
-            case Datos_Personas:
+            case LISTA_SIMPLE:
                 subMenuListaShell(listaSimple);
                 break;
-            case Datos_Personas:
+            case LISTA_DOBLE:
                 subMenuListaShell(listaDoble);
                 break;
-            case Datos_Personas:
+            case LISTA_CIRCULAR:
                 subMenuListaShell(listaCircular);
                 break;
             case SALIR:
@@ -401,13 +401,13 @@ void MenuIntercambio() {
             break;
         case 13: // Enter
             switch (opcion) {
-            case Datos_Personas:
+            case LISTA_SIMPLE:
                 subMenuListaIntercambio(listaSimple);
                 break;
-            case Datos_Personas:
+            case LISTA_DOBLE:
                 subMenuListaIntercambio(listaDoble);
                 break;
-            case Datos_Personas:
+            case LISTA_CIRCULAR:
                 subMenuListaIntercambio(listaCircular);
                 break;
             case SALIR:
@@ -501,13 +501,13 @@ void MenuQuicksortMain() {
             break;
         case 13: // Enter
             switch (opcion) {
-            case Datos_Personas:
+            case LISTA_SIMPLE:
                 subMenuListaQuicksort(listaSimple);
                 break;
-            case Datos_Personas:
+            case LISTA_DOBLE:
                 subMenuListaQuicksort(listaDoble);
                 break;
-            case Datos_Personas:
+            case LISTA_CIRCULAR:
                 subMenuListaQuicksort(listaCircular);
                 break;
             case SALIR:
@@ -601,13 +601,13 @@ void MenuDistribucion() {
             break;
         case 13: // Enter
             switch (opcion) {
-            case Datos_Personas:
+            case LISTA_SIMPLE:
                 subMenuListaDistribucion(listaSimple);
                 break;
-            case Datos_Personas:
+            case LISTA_DOBLE:
                 subMenuListaDistribucion(listaDoble);
                 break;
-            case Datos_Personas:
+            case LISTA_CIRCULAR:
                 subMenuListaDistribucion(listaCircular);
                 break;
             case SALIR:
@@ -701,13 +701,13 @@ void MenuBurbujaMain() {
             break;
         case 13: // Enter
             switch (opcion) {
-            case Datos_Personas:
+            case LISTA_SIMPLE:
                 subMenuListaBurbuja(listaSimple);
                 break;
-            case Datos_Personas:
+            case LISTA_DOBLE:
                 subMenuListaBurbuja(listaDoble);
                 break;
-            case Datos_Personas:
+            case LISTA_CIRCULAR:
                 subMenuListaBurbuja(listaCircular);
                 break;
             case SALIR:
