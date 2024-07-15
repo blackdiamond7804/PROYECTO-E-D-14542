@@ -101,7 +101,11 @@ void mostrarMenuOrden(int opcion) {
 void ingresarDatos(Lista& lista) {
     string cedula = ingresarCedula();
 
-    if (lista.verificarCedula(cedula) || cedulaRegistradaEnArchivo(cedula)) {
+    if (lista.verificarCedula(cedula)) {
+        cout << "La cedula ya esta registrada. Intente con otra. " << endl;
+        return;
+    }
+    else if (cedulaRegistradaEnArchivo(cedula)) {
         cout << "La cedula ya esta registrada. Intente con otra. " << endl;
         return;
     }
@@ -143,6 +147,7 @@ bool cedulaRegistradaEnArchivo(const string& cedula) {
 void subMenuListaShell(Lista& lista) {
     int subopcion = 0;
     bool continuar = true;
+    int o,ind;
 
     while (continuar) {
         mostrarSubMenu(subopcion);

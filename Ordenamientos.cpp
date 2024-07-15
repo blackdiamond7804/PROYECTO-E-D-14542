@@ -1,6 +1,8 @@
+
+#include <vector>
+#include <iostream>
 #include "Ordenamientos.h"
 #include "Hash.h"
-#include <vector>
 
 
 using namespace std;
@@ -163,6 +165,69 @@ void radixSortPersonas(Nodo*& cabeza, bool esCircular, int criterio) {
     }
 }
 
+void inversoString(Nodo* cabeza,Nodo* cola, bool esCircular, int criterio) {
+    if (!cabeza || cabeza == cola)return;
+    int indice;
+    bool inverso;
+    Nodo* actual;
+    string cadena = "";
+    Nodo* fin = nullptr;
+    do {
+        inverso = false;
+        actual = cabeza;
+        while (actual->siguiente != fin) {
+            Nodo* siguiente = actual->siguiente;
+            bool debeInverso = false;
+            switch (criterio) {
+            case 1:
+                cout << "Digite el indice desde donde se desea invertir: " << endl;
+                cin >> indice; 
+                if (indice < 0 && indice >= actual->dato.nombre.length())
+                {
+                    for (int i = 0; i < actual->dato.nombre.length() - indice + 1; i++) {
+                        cadena = actual->dato.nombre.at(i) + cadena;
+                    }
+                    actual->dato.nombre = cadena;
+                }
+                else {
+                    cout << "Indice fuera del rango" << endl;
+                }
+                break;
+            case 2:
+                cout << "Digite el indice desde donde se desea invertir: " << endl;
+                cin >> indice;
+                if (indice < 0 && indice >= actual->dato.nombre.length())
+                {
+                for (int i = 0; i < actual->dato.apellido.length() - indice; i++) {
+                    cadena = actual->dato.apellido.at(i) + cadena;
+                }
+                actual->dato.apellido = cadena;
+                }
+                else {
+                    cout << "Indice fuera del rango" << endl;
+                }
+                break;
+            case 3:
+                cout << "Digite el indice desde donde se desea invertir: " << endl;
+                cin >> indice;
+                if (indice < 0 && indice >= actual->dato.nombre.length())
+                {
+                for (int i = 0; i < actual->dato.cedula.length() - indice + 1; i++) {
+                    cadena = actual->dato.cedula.at(i) + cadena;
+                }
+                actual->dato.cedula = cadena;
+                }
+                else {
+                    cout << "Indice fuera del rango" << endl;
+                }
+                break;
+            }
+
+            actual = siguiente;
+        }
+
+    } while (inverso);
+}
 
 void bubbleSortPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio) {
     if (!cabeza || cabeza == cola) return;
@@ -204,6 +269,8 @@ void bubbleSortPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio)
         fin = actual;
     } while (intercambiado);
 }
+
+
 
 void bubbleSort(std::string& str) {
     std::transform(str.begin(), str.end(), str.begin(), ::toupper);
@@ -300,10 +367,10 @@ void intercambioPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio
                     condition = actual->dato.nombre > siguiente->dato.nombre;
                     break;
                 case 2:
-                    condition = actual->dato.segundoNombre > siguiente->dato.segundoNombre;
+                    condition = actual->dato.apellido > siguiente->dato.cedula;
                     break;
                 case 3:
-                    condition = actual->dato.apellido > siguiente->dato.apellido;
+                    condition = actual->dato.cedula > siguiente->dato.cedula;
                     break;
                 }
 
@@ -331,10 +398,10 @@ void intercambioPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio
                     condition = actual->dato.nombre > siguiente->dato.nombre;
                     break;
                 case 2:
-                    condition = actual->dato.segundoNombre > siguiente->dato.segundoNombre;
+                    condition = actual->dato.apellido > siguiente->dato.apellido;
                     break;
                 case 3:
-                    condition = actual->dato.apellido > siguiente->dato.apellido;
+                    condition = actual->dato.cedula > siguiente->dato.cedula;
                     break;
                 }
 

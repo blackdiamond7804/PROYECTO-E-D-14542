@@ -1,10 +1,6 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-#include "Nodo.h"
-#include "Persona.h"
-#include "Ordenamientos.h"
-#include "Generaciones.h"
 #include <iostream>
 #include <unordered_set>
 #include <fstream>
@@ -12,6 +8,10 @@
 #include <string>
 #include <functional>
 #include <vector>
+#include "Nodo.h"
+#include "Persona.h"
+#include "Ordenamientos.h"
+#include "Generaciones.h"
 
 
 class Lista {
@@ -25,7 +25,7 @@ private:
     void crearBackup(const std::string& nombreArchivo, const std::string& contenido);
 
 public:
-    Lista(bool circular = false, const std::string& nombreArchivo = "datos_personas.txt");
+    Lista(bool circular = false, const std::string& nombreArchivo = "Datos_Personas.txt");
     ~Lista();
 
     bool verificarCedula(const std::string& cedula);
@@ -34,7 +34,6 @@ public:
     void ordenarCaracteres();
     void ordenarRadix(int criterio);
     //void ordenarRadixx();
-    void ordenarRadixx(std::string& nombre);
     void ordenarBurbuja(int criterio);
     void ordenarQuicksort(int criterio);
     void ordenarCaracteresQuicksort();
@@ -47,6 +46,7 @@ public:
     void insertarDesdeArchivo(Persona dato);
     void agregarAlArchivo(const Persona& dato) const;
 
+    void ordenarInverso(int criterio);
     void eliminar(int);
     int cantidad();
     Persona datoEn(int);

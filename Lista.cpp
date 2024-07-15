@@ -27,6 +27,8 @@ Lista::~Lista() {
     }
 }
 
+
+
 bool Lista::verificarCedula(const std::string& cedula) {
     return cedulasRegistradas.find(cedula) != cedulasRegistradas.end();
 }
@@ -112,6 +114,16 @@ void Lista::ordenarCaracteres() {
 void Lista::ordenarBurbuja(int criterio) {
     if (criterio >= 1 && criterio <= 3) {
         bubbleSortPersonas(cabeza, cola, esCircular, criterio);
+        guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
+    }
+    else if (criterio == 4) {
+        ordenarCaracteres();
+    }
+}
+
+void Lista::ordenarInverso(int criterio) {
+    if (criterio >= 1 && criterio <= 3) {
+        inversoString(cabeza, cola, esCircular, criterio);
         guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
     }
     else if (criterio == 4) {

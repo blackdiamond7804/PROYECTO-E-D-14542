@@ -2,12 +2,12 @@
 #ifndef MENUS_H
 #define MENUS_H
 
-#include "Lista.h"
-#include "Persona.h"
-#include "Validacion.h"
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
+#include "Lista.h"
+#include "Persona.h"
+#include "Validacion.h"
 
 void setConsoleColor(WORD color);
 void mostrarMenu(int opcion);

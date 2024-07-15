@@ -2,12 +2,12 @@
 #ifndef ORDENAMIENTOS_H
 #define ORDENAMIENTOS_H
 
-#include "Nodo.h"
-#include "Lista.h"
-#include "Persona.h"
 #include <algorithm>
 #include <string>
 #include <cctype>
+#include "Nodo.h"
+#include "Lista.h"
+#include "Persona.h"
 
 void shellSortPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio);
 void shellSort(std::string& str);
@@ -26,4 +26,5 @@ void intercambioPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio
 void intercambio(std::string& str);
 
 void BucketSort(Nodo*& cabeza, Nodo*& cola, bool esCircular, int n);
+void inversoString(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio);
 #endif // ORDENAMIENTOS_H
