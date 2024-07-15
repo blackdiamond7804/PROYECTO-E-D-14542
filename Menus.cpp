@@ -15,9 +15,19 @@ enum OpcionesSubMenu {
     INGRESAR_DATOS,
     ORDENAR_LISTA,
     IMPRIMIR_LISTA,
+    INVERTIR_CARACTERES,
     REGRESAR,
     NUM_OPCIONES_SUBMENU
 };
+
+enum OpcionesSubMenu2 {
+    INVERTIR_NOMBRE,
+    INVERTIR_APELLIDO,
+    INVERTIR_CEDULA,
+    VOLVER,
+    NUM_OPCIONES_SUBMENU2
+};
+
 
 void setConsoleColor(WORD color) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -55,11 +65,35 @@ void mostrarSubMenu(int opcion) {
         "Ingresar datos",
         "Ordenar lista",
         "Imprimir lista",
+        "Invertir caracteres",
         "Regresar"
     };
 
     cout << "******************************" << endl;
     for (int i = 0; i < NUM_OPCIONES_SUBMENU; ++i) {
+        if (i == opcion) {
+            setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
+            cout << " --> " << opciones[i] << "\n";
+            setConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
+        }
+        else {
+            cout << "     " << opciones[i] << "\n";
+        }
+    }
+    cout << "******************************" << endl;
+}
+
+void mostrarSubMenu2(int opcion) {
+    system("cls");
+    const char* opciones[] = {
+        "Invertir nombre",
+        "Invertir apellido",
+        "Invertir cedula",
+        "Volver"
+    };
+
+    cout << "******************************" << endl;
+    for (int i = 0; i < NUM_OPCIONES_SUBMENU2; ++i) {
         if (i == opcion) {
             setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
             cout << " --> " << opciones[i] << "\n";
@@ -196,6 +230,32 @@ void subMenuListaShell(Lista& lista) {
                 cout << "Presione cualquier tecla para continuar...";
                 _getch(); // Espera una tecla antes de continuar
                 break;
+            case INVERTIR_CARACTERES:
+                int criterio = 0;
+                bool continuarOrden = true;
+                while (continuarOrden) {
+                    mostrarSubMenu2(criterio);
+
+                    int teclaOrden = _getch();
+                    switch (teclaOrden) {
+                    case 72: // Flecha arriba
+                        criterio = (criterio - 1 + 4) % 4; // 4 opciones en el menú de ordenación
+                        break;
+                    case 80: // Flecha abajo
+                        criterio = (criterio + 1) % 4;
+                        break;
+                    case 13: // Enter
+                        if (criterio == 3) {
+                            continuarOrden = false;
+                        }
+                        else {
+                            lista.InertirPersonas(criterio + 1); // Ajustar criterio según implementación
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
             case REGRESAR:
                 continuar = false;
                 break;
@@ -205,7 +265,6 @@ void subMenuListaShell(Lista& lista) {
             }
         }
     }
-}
 
 void MenuShellMain() {
     Lista listaSimple(false, "Datos_Personas.txt");
@@ -297,6 +356,32 @@ void subMenuListaRadix(Lista& lista) {
                 _getch(); // Espera una tecla antes de continuar
                 break;
             case 3:
+                int criterio = 0;
+                bool continuarOrden = true;
+                while (continuarOrden) {
+                    mostrarSubMenu2(criterio);
+
+                    int teclaOrden = _getch();
+                    switch (teclaOrden) {
+                    case 72: // Flecha arriba
+                        criterio = (criterio - 1 + 4) % 4; // 4 opciones en el menú de ordenación
+                        break;
+                    case 80: // Flecha abajo
+                        criterio = (criterio + 1) % 4;
+                        break;
+                    case 13: // Enter
+                        if (criterio == 3) {
+                            continuarOrden = false;
+                        }
+                        else {
+                            lista.InertirPersonas(criterio + 1); // Ajustar criterio según implementación
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            case 3:
                 continuar = false;
                 break;
             default:
@@ -305,7 +390,7 @@ void subMenuListaRadix(Lista& lista) {
             }
         }
     }
-}
+
 
 void MenuRadixMain() {
     Lista listaSimple(false, "Datos_Personas.txt");
@@ -397,6 +482,32 @@ void subMenuListaIntercambio(Lista& lista) {
                 cout << "Presione cualquier tecla para continuar...";
                 _getch(); // Espera una tecla antes de continuar
                 break;
+            case INVERTIR_CARACTERES:
+                int criterio = 0;
+                bool continuarOrden = true;
+                while (continuarOrden) {
+                    mostrarSubMenu2(criterio);
+
+                    int teclaOrden = _getch();
+                    switch (teclaOrden) {
+                    case 72: // Flecha arriba
+                        criterio = (criterio - 1 + 4) % 4; // 4 opciones en el menú de ordenación
+                        break;
+                    case 80: // Flecha abajo
+                        criterio = (criterio + 1) % 4;
+                        break;
+                    case 13: // Enter
+                        if (criterio == 3) {
+                            continuarOrden = false;
+                        }
+                        else {
+                            lista.InertirPersonas(criterio + 1); // Ajustar criterio según implementación
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
             case REGRESAR:
                 continuar = false;
                 break;
@@ -406,7 +517,6 @@ void subMenuListaIntercambio(Lista& lista) {
             }
         }
     }
-}
 
 void MenuIntercambio() {
     Lista listaSimple(false, "Datos_Personas.txt");
@@ -497,6 +607,32 @@ void subMenuListaQuicksort(Lista& lista) {
                 cout << "Presione cualquier tecla para continuar...";
                 _getch(); // Espera una tecla antes de continuar
                 break;
+            case INVERTIR_CARACTERES:
+                int criterio = 0;
+                bool continuarOrden = true;
+                while (continuarOrden) {
+                    mostrarSubMenu2(criterio);
+
+                    int teclaOrden = _getch();
+                    switch (teclaOrden) {
+                    case 72: // Flecha arriba
+                        criterio = (criterio - 1 + 4) % 4; // 4 opciones en el menú de ordenación
+                        break;
+                    case 80: // Flecha abajo
+                        criterio = (criterio + 1) % 4;
+                        break;
+                    case 13: // Enter
+                        if (criterio == 3) {
+                            continuarOrden = false;
+                        }
+                        else {
+                            lista.InertirPersonas(criterio + 1); // Ajustar criterio según implementación
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
             case REGRESAR:
                 continuar = false;
                 break;
@@ -506,7 +642,6 @@ void subMenuListaQuicksort(Lista& lista) {
             }
         }
     }
-}
 
 void MenuQuicksortMain() {
     Lista listaSimple(false, "Datos_Personas.txt");
@@ -597,6 +732,32 @@ void subMenuListaDistribucion(Lista& lista) {
                 cout << "Presione cualquier tecla para continuar...";
                 _getch(); // Espera una tecla antes de continuar
                 break;
+            case INVERTIR_CARACTERES:
+                int criterio = 0;
+                bool continuarOrden = true;
+                while (continuarOrden) {
+                    mostrarSubMenu2(criterio);
+
+                    int teclaOrden = _getch();
+                    switch (teclaOrden) {
+                    case 72: // Flecha arriba
+                        criterio = (criterio - 1 + 4) % 4; // 4 opciones en el menú de ordenación
+                        break;
+                    case 80: // Flecha abajo
+                        criterio = (criterio + 1) % 4;
+                        break;
+                    case 13: // Enter
+                        if (criterio == 3) {
+                            continuarOrden = false;
+                        }
+                        else {
+                            lista.InertirPersonas(criterio + 1); // Ajustar criterio según implementación
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
             case REGRESAR:
                 continuar = false;
                 break;
@@ -606,7 +767,6 @@ void subMenuListaDistribucion(Lista& lista) {
             }
         }
     }
-}
 
 void MenuDistribucion() {
     Lista listaSimple(false, "Datos_Personas.txt");
@@ -697,6 +857,32 @@ void subMenuListaBurbuja(Lista& lista) {
                 cout << "Presione cualquier tecla para continuar...";
                 _getch(); // Espera una tecla antes de continuar
                 break;
+            case INVERTIR_CARACTERES:
+                int criterio = 0;
+                bool continuarOrden = true;
+                while (continuarOrden) {
+                    mostrarSubMenu2(criterio);
+
+                    int teclaOrden = _getch();
+                    switch (teclaOrden) {
+                    case 72: // Flecha arriba
+                        criterio = (criterio - 1 + 4) % 4; // 4 opciones en el menú de ordenación
+                        break;
+                    case 80: // Flecha abajo
+                        criterio = (criterio + 1) % 4;
+                        break;
+                    case 13: // Enter
+                        if (criterio == 3) {
+                            continuarOrden = false;
+                        }
+                        else {
+                            lista.InertirPersonas(criterio + 1); // Ajustar criterio según implementación
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
             case REGRESAR:
                 continuar = false;
                 break;
@@ -706,7 +892,6 @@ void subMenuListaBurbuja(Lista& lista) {
             }
         }
     }
-}
 
 void MenuBurbujaMain() {
     Lista listaSimple(false, "Datos_Personas.txt");

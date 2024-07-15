@@ -55,6 +55,7 @@ public:
     Persona eliminarPrimero();
     void insertarUltimo(Persona persona);
     void ordenarDistribucion(int criterio);
+    void InertirPersonas(int criterio);
    
 };
 

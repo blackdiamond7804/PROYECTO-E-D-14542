@@ -12,6 +12,7 @@
 void setConsoleColor(WORD color);
 void mostrarMenu(int opcion);
 void mostrarSubMenu(int opcion);
+void mostrarSubMenu2(int opcion);
 void mostrarMenuOrden(int opcion);
 void ingresarDatos(Lista& lista);
 bool cedulaRegistradaEnArchivo(const string& cedula);

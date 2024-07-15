@@ -154,6 +154,13 @@ void Lista::ordenarCaracteresQuicksort() {
     crearBackup(nombreArchivo, contenidoOrdenado); // Crear un backup con los datos ordenados
 }
 
+void Lista::InertirPersonas(int criterio) {
+    if (criterio >= 1 && criterio <= 3) {
+        inversoString(cabeza, cola, esCircular, criterio);
+        guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
+    }
+}
+
 void Lista::ordenarIntercambio(int criterio) {
     if (criterio >= 1 && criterio <= 3) {
         intercambioPersonas(cabeza, cola, esCircular, criterio);
@@ -194,6 +201,7 @@ std::string Lista::obtenerContenidoOrdenado() const {
     }
     return ss.str();
 }
+
 
 void Lista::imprimir() const {
     Nodo* actual = cabeza;

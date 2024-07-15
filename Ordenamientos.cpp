@@ -1,6 +1,7 @@
 
 #include <vector>
 #include <iostream>
+#include <conio.h>
 #include "Ordenamientos.h"
 #include "Hash.h"
 
@@ -165,6 +166,16 @@ void radixSortPersonas(Nodo*& cabeza, bool esCircular, int criterio) {
     }
 }
 
+void invertirStringDesdeIndice(string& str, int indice) {
+    if (indice < 0 || indice >= str.length()) {
+        cout << "Indice fuera del rango" << endl;
+        return;
+    }
+    string parte1 = str.substr(0, indice + 1); 
+    reverse(parte1.begin(), parte1.end());     
+    str = parte1;
+}
+
 void inversoString(Nodo* cabeza,Nodo* cola, bool esCircular, int criterio) {
     if (!cabeza || cabeza == cola)return;
     int indice;
@@ -182,44 +193,23 @@ void inversoString(Nodo* cabeza,Nodo* cola, bool esCircular, int criterio) {
             case 1:
                 cout << "Digite el indice desde donde se desea invertir: " << endl;
                 cin >> indice; 
-                if (indice < 0 && indice >= actual->dato.nombre.length())
-                {
-                    for (int i = 0; i < actual->dato.nombre.length() - indice + 1; i++) {
-                        cadena = actual->dato.nombre.at(i) + cadena;
-                    }
-                    actual->dato.nombre = cadena;
-                }
-                else {
-                    cout << "Indice fuera del rango" << endl;
-                }
+                invertirStringDesdeIndice(actual->dato.nombre, indice);
+                cout << actual->dato.nombre;
+                _getch();
                 break;
             case 2:
                 cout << "Digite el indice desde donde se desea invertir: " << endl;
                 cin >> indice;
-                if (indice < 0 && indice >= actual->dato.nombre.length())
-                {
-                for (int i = 0; i < actual->dato.apellido.length() - indice; i++) {
-                    cadena = actual->dato.apellido.at(i) + cadena;
-                }
-                actual->dato.apellido = cadena;
-                }
-                else {
-                    cout << "Indice fuera del rango" << endl;
-                }
+                invertirStringDesdeIndice(actual->dato.apellido, indice);
+                cout << actual->dato.apellido;
+                _getch();
                 break;
             case 3:
                 cout << "Digite el indice desde donde se desea invertir: " << endl;
                 cin >> indice;
-                if (indice < 0 && indice >= actual->dato.nombre.length())
-                {
-                for (int i = 0; i < actual->dato.cedula.length() - indice + 1; i++) {
-                    cadena = actual->dato.cedula.at(i) + cadena;
-                }
-                actual->dato.cedula = cadena;
-                }
-                else {
-                    cout << "Indice fuera del rango" << endl;
-                }
+                invertirStringDesdeIndice(actual->dato.cedula, indice);
+                cout << actual->dato.cedula;
+                _getch();
                 break;
             }
 

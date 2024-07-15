@@ -1,6 +1,8 @@
-Nombre: Juan Pedro, Apellido: Caiza, Cedula: 1753688215
-Correo: jpCaiza@espe.edu.ec, Contrasenia inicial: ajoziac, Contrasenia: clqbkce
-Nombre: Vale Belinda, Apellido: Sanchez, Cedula: 1710520642
-Correo: vbSanchez@espe.edu.ec, Contrasenia inicial: zvaehcnas1, Contrasenia: bxcgjepcu
-Nombre: Carmen Luisa, Apellido: Sanchez, Cedula: 1753688512
-Correo: clSanchez@espe.edu.ec, Contrasenia inicial: zcaehcnas, Contrasenia: becgjepcu
+Nombre: erB Carla,,, Apellido: Bustamante,,, Cedula: 1719690487
+Correo: bcBustamante@espe.edu.ec, Contrasenia inicial: ebatnamatsub2,,, Contrasenia: gdcvpcocvuwd
+Nombre: irdeP David,,,, Apellido: Caiza,,,, Cedula: 1710520642
+Correo: pdCaiza@espe.edu.ec, Contrasenia inicial: apdziac,,,, Contrasenia: crfbkce
+Nombre: auJ Carlos,,,, Apellido: Garcia,,,, Cedula: 1753688512
+Correo: jcGarcia@espe.edu.ec, Contrasenia inicial: ajsicrag,,,, Contrasenia: cluketci
+Nombre: Vale Belinda,,,, Apellido: Vazquez,,,, Cedula: 1753688215
+Correo: vbVazquez@espe.edu.ec, Contrasenia inicial: zvaeuqzav1,,,, Contrasenia: bxcgwsbcx
