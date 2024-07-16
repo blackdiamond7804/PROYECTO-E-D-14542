@@ -73,7 +73,7 @@ void Lista::insertar(Persona dato) {
 
 void Lista::ordenarRadix(int criterio) {
     if (criterio >= 1 && criterio <= 3) {
-        radixSortPersonas(cabeza,esCircular, criterio);
+        radixSortPersonas(cabeza, cola, esCircular, criterio);
         guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
     }
     else if (criterio == 4) {
@@ -157,8 +157,10 @@ void Lista::ordenarCaracteresQuicksort() {
 void Lista::InertirPersonas(int criterio) {
     if (criterio >= 1 && criterio <= 3) {
         inversoString(cabeza, cola, esCircular, criterio);
-        guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
+        //guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
     }
+    std::string contenidoOrdenado = obtenerContenidoOrdenado();
+    crearBackup(nombreArchivo, contenidoOrdenado);
 }
 
 void Lista::ordenarIntercambio(int criterio) {
@@ -448,4 +450,12 @@ void Lista::ordenarDistribucion(int criterio) {
     else if (criterio == 4) {
         ordenarCaracteres();
     }
+}
+
+Nodo* Lista::getCabeza() {
+    return cabeza;
+}
+
+Nodo* Lista::getCola() {
+    return cola;
 }

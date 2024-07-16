@@ -17,6 +17,11 @@ void mostrarMenuOrden(int opcion);
 void ingresarDatos(Lista& lista);
 bool cedulaRegistradaEnArchivo(const string& cedula);
 
+void encriptador(Nodo* act, int nume);
+void encriptado(Lista& lista, int num);
+void mostrarAdicional(int opcion);
+void menuAdicional(Lista& lista);
+
 void MenuShellMain();
 void subMenuListaShell(Lista& lista);
 

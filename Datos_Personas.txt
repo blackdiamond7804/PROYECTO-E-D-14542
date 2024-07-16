@@ -1,8 +1,6 @@
-Nombre: erB Carla,,, Apellido: Bustamante,,, Cedula: 1719690487
-Correo: bcBustamante@espe.edu.ec, Contrasenia inicial: ebatnamatsub2,,, Contrasenia: gdcvpcocvuwd
-Nombre: irdeP David,,,, Apellido: Caiza,,,, Cedula: 1710520642
-Correo: pdCaiza@espe.edu.ec, Contrasenia inicial: apdziac,,,, Contrasenia: crfbkce
-Nombre: auJ Carlos,,,, Apellido: Garcia,,,, Cedula: 1753688512
-Correo: jcGarcia@espe.edu.ec, Contrasenia inicial: ajsicrag,,,, Contrasenia: cluketci
-Nombre: Vale Belinda,,,, Apellido: Vazquez,,,, Cedula: 1753688215
-Correo: vbVazquez@espe.edu.ec, Contrasenia inicial: zvaeuqzav1,,,, Contrasenia: bxcgwsbcx
+Nombre: Ana Gabriela,, Apellido: Mendez,, Cedula: 1710566850
+Correo: agMendez@espe.edu.ec, Contrasenia inicial: zaaednem1,, Contrasenia: bccgfpgo
+Nombre: Brayan Josue,, Apellido: Jacome,, Cedula: 1756116206
+Correo: bjJacome@espe.edu.ec, Contrasenia inicial: ebemocaj,, Contrasenia: gdgoqecl
+Nombre: Kevin Julio,, Apellido: Vasquez,, Cedula: 1725920720
+Correo: kjVasquez@espe.edu.ec, Contrasenia inicial: zkoeuqsav2,, Contrasenia: bmqgwsucx

@@ -57,6 +57,8 @@ public:
     void ordenarDistribucion(int criterio);
     void InertirPersonas(int criterio);
    
+    Nodo* getCabeza();
+    Nodo* getCola();
 };
 
 #endif // LISTA_H

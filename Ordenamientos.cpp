@@ -101,68 +101,81 @@ void radixSort(std::string& str) {
 }
 
 
-int obtenerDigito(const std::string& str, int index) {
-    if (index < str.length()) {
-        return str[str.length() - 1 - index] - '0';
-    }
-    return 0;
-}
+void radixSortPersonas(Nodo*& cabeza, Nodo* cola, bool esCircular, int criterio) {
+    if (!cabeza || cabeza == cola) return;
 
-void radixSortPersonas(Nodo*& cabeza, bool esCircular, int criterio) {
-    if (!cabeza || cabeza == cabeza->siguiente) return;
-
-    // Encontrar el nodo máximo según el criterio seleccionado
-    int maxLen = 0;
+    // Obtener la longitud máxima de los strings en la lista
+    int maxLongitud = 0;
     Nodo* actual = cabeza;
     do {
-        int len = 0;
+        string criterioStr;
         switch (criterio) {
-        case 2: len = actual->dato.nombre.length(); break;
-        case 1: len = actual->dato.apellido.length(); break;
-        case 3: len = actual->dato.cedula.length(); break;
+        case 1:
+            criterioStr = actual->dato.nombre;
+            break;
+        case 2:
+            criterioStr = actual->dato.apellido;
+            break;
+        case 3:
+            criterioStr = actual->dato.cedula;
+            break;
         }
-        maxLen = std::max(maxLen, len);
+        int longitud = criterioStr.length();
+        if (longitud > maxLongitud) maxLongitud = longitud;
         actual = actual->siguiente;
     } while (actual != (esCircular ? cabeza : nullptr));
 
-    // Realizar el Radix Sort basado en el criterio
-    for (int digit = 0; digit < maxLen; digit++) {
-        Nodo* nuevoCabeza = nullptr;
-        Nodo* nuevoCola = nullptr;
+    // Radix Sort
+    for (int d = maxLongitud - 1; d >= 0; d--) {
+        // Crear contenedores para los caracteres (ASCII 0-255)
+        Nodo* buckets[256] = { nullptr };
+        Nodo* last[256] = { nullptr };
 
-        while (cabeza) {
-            Nodo* nodo = cabeza;
-            cabeza = cabeza->siguiente;
-            nodo->siguiente = nullptr;
-
-            if (!nuevoCabeza) {
-                nuevoCabeza = nodo;
-                nuevoCola = nodo;
+        // Distribuir los nodos en los buckets según el carácter en la posición d
+        actual = cabeza;
+        do {
+            string criterioStr;
+            switch (criterio) {
+            case 1:
+                criterioStr = actual->dato.nombre;
+                break;
+            case 2:
+                criterioStr = actual->dato.apellido;
+                break;
+            case 3:
+                criterioStr = actual->dato.cedula;
+                break;
+            }
+            char caracter = (d >= 0 && d < criterioStr.length()) ? criterioStr[d] : '\0';
+            int indice = (int)caracter + 1; // Usar (int)caracter + 1 para manejar caracteres nulos correctamente
+            if (!buckets[indice]) {
+                buckets[indice] = actual;
             }
             else {
-                Nodo* actual = nuevoCabeza;
-                Nodo* anterior = nullptr;
-                while (actual && obtenerDigito(actual->dato.cedula, digit) <= obtenerDigito(nodo->dato.cedula, digit)) {
-                    anterior = actual;
-                    actual = actual->siguiente;
-                }
-                if (!anterior) {
-                    nodo->siguiente = nuevoCabeza;
-                    nuevoCabeza = nodo;
+                last[indice]->siguiente = actual;
+            }
+            last[indice] = actual;
+            actual = actual->siguiente;
+        } while (actual != (esCircular ? cabeza : nullptr));
+
+        // Concatenar los buckets en la lista original
+        Nodo* nuevoCabeza = nullptr;
+        Nodo* nuevoCola = nullptr;
+        for (int i = 0; i < 256; i++) {
+            if (buckets[i]) {
+                if (!nuevoCabeza) {
+                    nuevoCabeza = buckets[i];
                 }
                 else {
-                    nodo->siguiente = actual;
-                    anterior->siguiente = nodo;
-                    if (!actual) {
-                        nuevoCola = nodo;
-                    }
+                    nuevoCola->siguiente = buckets[i];
                 }
+                nuevoCola = last[i];
             }
         }
+        if (esCircular && nuevoCola) nuevoCola->siguiente = nuevoCabeza;
+
         cabeza = nuevoCabeza;
-        if (esCircular) {
-            nuevoCola->siguiente = cabeza;
-        }
+        cola = nuevoCola;
     }
 }
 
