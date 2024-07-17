@@ -1,5 +1,6 @@
 #pragma once
 
+#include"Pila.h"
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -18,3 +19,4 @@ bool validarCedula(string cedula);
 string ingresarCedula();
 char* ingresar(char* msj);
 
+Pila convertirCedulaAPila(const string& cedula);

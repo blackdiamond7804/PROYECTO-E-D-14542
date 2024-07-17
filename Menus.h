@@ -8,18 +8,25 @@
 #include "Lista.h"
 #include "Persona.h"
 #include "Validacion.h"
+#include "Busquedas.h"
 
 void setConsoleColor(WORD color);
 void mostrarMenu(int opcion);
 void mostrarSubMenu(int opcion);
 void mostrarSubMenu2(int opcion);
-void mostrarSubMenuCombinarListas(int opcion);
 void mostrarMenuOrden(int opcion);
 void ingresarDatos(Lista& lista);
 bool cedulaRegistradaEnArchivo(const string& cedula);
 
 void encriptador(Nodo* act, int nume);
 void encriptado(Lista& lista, int num);
+void contarVocalesYConsonantes(Lista& lista);
+void reemplazarEnCedula();
+
+void mostrarMenuBusqueda(int opcion);
+void menuBusqueda(Lista& lista);
+void mostrarSubMenuCombinarListas(int opcion);
+
 void mostrarAdicional(int opcion);
 void menuAdicional(Lista& lista);
 

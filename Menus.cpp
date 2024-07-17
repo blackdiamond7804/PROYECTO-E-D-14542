@@ -31,9 +31,21 @@ enum OpcionesSubMenu2 {
 enum OpcionesAdicionales {
     INVERTIR_CARACTERES,
     ENCRIPTAR_NOMBRE_APELLIDO,
+    CONTAR_VOCALES_CONSONANTES,
+    REEMPLAZAR_CEDULA,
+    MEZCLA_NOMBRES,
     COMBINAR_LISTAS,
+    BUSCAR,
     RETROCEDER,
     NUM_OPCIONES_ADICIONALES
+};
+
+enum OpcionesBusqueda {
+    BUSQUEDA_SECUENCIAL,
+    BUSQUEDA_BINARIA,
+    BUSQUEDA_HASH,
+    ATRAS,
+    NUM_OPCIONES_BUSQUEDA
 };
 
 void setConsoleColor(WORD color) {
@@ -113,30 +125,6 @@ void mostrarSubMenu2(int opcion) {
     cout << "******************************" << endl;
 }
 
-void mostrarSubMenuCombinarListas(int opcion) {
-    system("cls");
-    const char* opciones[] = {
-        "Ordenadas por nombre",
-        "Ordenadas por apellido",
-        "Ordenadas por cedula",
-        "Volver"
-    };
-
-    cout << "******************************" << endl;
-    cout << "Seleccione el criterio por el cual estan ordenadas las listas:" << endl;
-    for (int i = 0; i < NUM_OPCIONES_SUBMENU2; ++i) {
-        if (i == opcion) {
-            setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
-            cout << " --> " << opciones[i] << "\n";
-            setConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
-        }
-        else {
-            cout << "     " << opciones[i] << "\n";
-        }
-    }
-    cout << "******************************" << endl;
-}
-
 void mostrarMenuOrden(int opcion) {
     system("cls");
     const char* opciones[] = {
@@ -168,12 +156,65 @@ void mostrarAdicional(int opcion) {
     const char* opciones[] = {
         "Invertir caracteres",
         "Encriptar nombres y apellidos",
+        "Contar vocales y consonantes",
+        "Reemplazar cedula",
+        "Mezclar nombres",
         "Combinar listas",
+        "Buscar",
         "Volver"
     };
 
     cout << "******************************" << endl;
     for (int i = 0; i < NUM_OPCIONES_ADICIONALES; ++i) {
+        if (i == opcion) {
+            setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
+            cout << " --> " << opciones[i] << "\n";
+            setConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
+        }
+        else {
+            cout << "     " << opciones[i] << "\n";
+        }
+    }
+    cout << "******************************" << endl;
+}
+
+void mostrarSubMenuCombinarListas(int opcion) {
+    system("cls");
+    const char* opciones[] = {
+        "Ordenadas por nombre",
+        "Ordenadas por apellido",
+        "Ordenadas por cedula",
+        "Volver"
+    };
+
+    cout << "******************************" << endl;
+    cout << "Seleccione el criterio por el cual estan ordenadas las listas:" << endl;
+    for (int i = 0; i < NUM_OPCIONES_SUBMENU2; ++i) {
+        if (i == opcion) {
+            setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
+            cout << " --> " << opciones[i] << "\n";
+            setConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
+        }
+        else {
+            cout << "     " << opciones[i] << "\n";
+        }
+    }
+    cout << "******************************" << endl;
+}
+
+void mostrarMenuBusqueda(int opcion) {
+    system("cls");
+    const char* opciones[] = {
+        "Busqueda Secuencial",
+        "Busqueda Binaria",
+        "Busqueda Hash",
+        "Atras"
+    };
+
+    cout << "******************************" << endl;
+    cout << "Seleccione un criterio de busqueda:" << endl;
+    cout << "******************************" << endl;
+    for (int i = 0; i < NUM_OPCIONES_BUSQUEDA; ++i) { // 4 opciones + "Regresar"
         if (i == opcion) {
             setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
             cout << " --> " << opciones[i] << "\n";
@@ -263,6 +304,81 @@ void encriptado(Lista& lista, int num) {
     encriptador(actual, num);
 }
 
+void contarVocalesYConsonantes(Lista& lista) {
+    int vocales = 0;
+    int consonantes = 0;
+    lista.contarVocalesYConsonantes(vocales, consonantes);
+    cout << "En la lista hay " << vocales << " vocales y " << consonantes << " consonantes en total." << endl;
+
+    system("pause");
+}
+
+void reemplazarEnCedula() {
+    string cedula = ingresarCedula();
+    if (!validarCedula(cedula)) {
+        cout << "Cedula invalida:" << endl;
+        return;
+    }
+
+    Pila pila = convertirCedulaAPila(cedula);
+    int viejo, nuevo;
+
+    cout << "Ingrese el valor a reemplazar: ";
+    cin >> viejo;
+    cout << "Ingrese el nuevo valor: ";
+    cin >> nuevo;
+
+    pila.reemplazar(viejo, nuevo);
+
+    cout << "Cedula modificada: ";
+    pila.imprimir();
+}
+
+void menuBusqueda(Lista& lista) {
+    int subopcion = 0;
+    bool continuar = true;
+    while (continuar) {
+        mostrarMenuBusqueda(subopcion);
+        int tecla = _getch();
+        switch (tecla) {
+        case 72: // Flecha arriba
+            subopcion = (subopcion - 1 + NUM_OPCIONES_BUSQUEDA) % NUM_OPCIONES_BUSQUEDA;
+            break;
+        case 80: // Flecha abajo
+            subopcion = (subopcion + 1) % NUM_OPCIONES_BUSQUEDA;
+            break;
+        case 13: // Enter
+            switch (subopcion) {
+            case BUSQUEDA_SECUENCIAL: {
+                Busquedas busquedas;
+                string cedula;
+                cout << "Ingrese la cedula a buscar: ";
+                cin >> cedula;
+                Persona* persona = busquedas.busquedaSecuencial("Datos_Personas.txt", cedula);
+                busquedas.imprimirPersona(persona);
+                _getch();
+            }  
+                break;
+            case BUSQUEDA_BINARIA:
+                cout << "Busqueda binaria" << endl;
+                break;
+            case BUSQUEDA_HASH:
+                cout << "Busqueda hash" << endl;
+                break;
+            case ATRAS:
+                continuar = false;
+                break;
+            default:
+                cout << "Opcion no valida" << endl;
+                break;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+}
+
 void menuAdicional(Lista& lista) {
     int subopcion = 0;
     bool continuar = true;
@@ -312,36 +428,53 @@ void menuAdicional(Lista& lista) {
                 _getch(); // Espera una tecla antes de continuar
                 break;
             }
+            case CONTAR_VOCALES_CONSONANTES:
+                contarVocalesYConsonantes(lista);
+                break;
+            case REEMPLAZAR_CEDULA:
+                reemplazarEnCedula();
+                _getch();
+                break;
+            case MEZCLA_NOMBRES:
+                lista.MezclaPares();
+                cout << "Presione cualquier tecla para continuar...";
+                _getch(); // Espera una tecla antes de continuar
+                break;
             case COMBINAR_LISTAS: {
-                int criteri = 0;
-                bool continuarOrden = true;
-                while (continuarOrden) {
-                    mostrarSubMenuCombinarListas(criteri);
-                    int teclaOrden = _getch();
-                    switch (teclaOrden) {
+                int criter = 0;
+                bool continuarOrde = true;
+                while (continuarOrde) {
+                    mostrarSubMenuCombinarListas(criter);
+                    int teclaOrde = _getch();
+                    switch (teclaOrde) {
                     case 72: // Flecha arriba
-                        criteri = (criteri - 1 + 4) % 4; // 4 opciones en el menú de ordenación
+                        criter = (criter - 1 + 4) % 4; // 4 opciones en el menú de ordenación
                         break;
                     case 80: // Flecha abajo
-                        criteri = (criteri + 1) % 4;
+                        criter = (criter + 1) % 4;
                         break;
                     case 13: // Enter
-                        if (criteri == 3) {
-                            continuarOrden = false;
-                        } else {
+                        if (criter == 3) {
+                            continuarOrde = false;
+                        }
+                        else {
                             Lista lista2(false, "Datos_Personas.txt");
                             Lista listaCombinada(false);
-                            listaCombinada.setCabeza(lista.combinarListas(lista.getCabeza(), lista2.getCabeza(), criteri + 1));
+                            listaCombinada.setCabeza(lista.combinarListas(lista.getCabeza(), lista2.getCabeza(), criter + 1));
                             cout << "Lista combinada: " << endl;
                             listaCombinada.imprimir();
                             cout << "Presione cualquier tecla para continuar...";
                             _getch(); // Espera una tecla antes de continuar
+                            
                         }
                         break;
                     }
                 }
                 break;
             }
+            case BUSCAR:
+                menuBusqueda(lista);
+                break;
             case RETROCEDER:
                 continuar = false;
                 break;

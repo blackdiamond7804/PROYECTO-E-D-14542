@@ -1,10 +1,4 @@
 #include "Validacion.h"
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <cctype>
-#include <conio.h>
-
 
 using namespace std;
 
@@ -227,4 +221,12 @@ char* ingresar(char* msj) {
     }
     dato[i] = '\0';
     return dato;
+}
+
+Pila convertirCedulaAPila(const string& cedula) {
+    Pila pila;
+    for (char c : cedula) {
+        pila.push(c - '0');
+    }
+    return pila;
 }

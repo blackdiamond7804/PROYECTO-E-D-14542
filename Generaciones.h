@@ -1,13 +1,18 @@
 #ifndef GENERACIONES_H
 #define GENERACIONES_H
 
-#include <string>
-#include <algorithm>
 #include "Persona.h"
 #include "Nodo.h"
+#include <string>
+#include <algorithm>
+#include <iostream>
+
 
 std::string generarCorreo(Nodo* cabeza, Persona& persona, bool esCircular);
 std::string generarContrasena(Persona& persona);
 std::string desencriptarContrasena(Persona& persona);
+
+void contarVocalesYConsonantes(Nodo* nodo, int& vocales, int& consonantes);
+void contarVocalesYConsonantesRec(Nodo* nodo, int& vocales, int& consonantes);
 
 #endif // GENERACIONES_H

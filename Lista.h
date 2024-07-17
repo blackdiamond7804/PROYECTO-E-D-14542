@@ -12,9 +12,10 @@
 #include "Persona.h"
 #include "Ordenamientos.h"
 #include "Generaciones.h"
+#include"I_Mezclar.h"
 
 
-class Lista {
+class Lista :public Mezclar {
 private:
     Nodo* cabeza;
     Nodo* cola;
@@ -33,7 +34,7 @@ public:
     void ordenar(int criterio);
     void ordenarCaracteres();
     void ordenarRadix(int criterio);
-    //void ordenarRadixx();
+
     void ordenarBurbuja(int criterio);
     void ordenarQuicksort(int criterio);
     void ordenarCaracteresQuicksort();
@@ -56,12 +57,15 @@ public:
     void insertarUltimo(Persona persona);
     void ordenarDistribucion(int criterio);
     void InertirPersonas(int criterio);
-    Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
    
     Nodo* getCabeza();
     Nodo* getCola();
-    void setCabeza(Nodo* cabeza);
-    void setCola(Nodo* cola);
+    void setCabeza(Nodo* newCabeza);
+    void setCola(Nodo* newCola);
+    void contarVocalesYConsonantes(int& vocales, int& consonantes);
+    void contarVocalesYConsonantes(const std::string& texto, int index, int& vocales, int& consonantes) const;
+    void MezclaPares() override;
+    Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
 };
 
 #endif // LISTA_H

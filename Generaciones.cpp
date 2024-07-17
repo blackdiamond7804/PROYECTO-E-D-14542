@@ -89,3 +89,28 @@ std::string desencriptarContrasena(Persona& persona) {
 
     return contrasenaDesencriptada;
 }
+
+void contarVocalesYConsonantesRec(Nodo* nodo, int& vocales, int& consonantes) {
+    if (nodo == nullptr) return;
+
+
+    std::string nombreCompleto = nodo->dato.nombre + nodo->dato.segundoNombre + nodo->dato.apellido;
+    for (char c : nombreCompleto) {
+        c = std::tolower(c);
+        if (std::isalpha(c)) {
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                vocales++;
+            }
+            else {
+                consonantes++;
+            }
+        }
+    }
+    contarVocalesYConsonantesRec(nodo->siguiente, vocales, consonantes);
+}
+
+void contarVocalesYConsonantes(Nodo* nodo, int& vocales, int& consonantes) {
+    vocales = 0;
+    consonantes = 0;
+    contarVocalesYConsonantesRec(nodo, vocales, consonantes);
+}

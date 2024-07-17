@@ -67,7 +67,7 @@ void Lista::insertar(Persona dato) {
 
     cedulasRegistradas.insert(dato.cedula);
 
-    // Agregar al archivo despuï¿½s de insertar
+    // Agregar al archivo después de insertar
     agregarAlArchivo(dato);
 }
 
@@ -161,40 +161,6 @@ void Lista::InertirPersonas(int criterio) {
     }
     std::string contenidoOrdenado = obtenerContenidoOrdenado();
     crearBackup(nombreArchivo, contenidoOrdenado);
-}
-
-Nodo* Lista::combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio) {
-    if (cabeza1 == nullptr) {
-        return cabeza2;
-    }
-    if (cabeza2 == nullptr) {
-        return cabeza1;
-    }
-
-    string dato1, dato2;
-
-    switch (criterio) {
-        case 1:
-            dato1 = cabeza1->dato.cedula;
-            dato2 = cabeza2->dato.cedula;
-            break;
-        case 2:
-            dato1 = cabeza1->dato.nombre;
-            dato2 = cabeza2->dato.nombre;
-            break;
-        case 3:
-            dato1 = cabeza1->dato.apellido;
-            dato2 = cabeza2->dato.apellido;
-            break;
-    }
-
-    if (dato1 < dato2) {
-        cabeza1->siguiente = combinarListas(cabeza1->siguiente, cabeza2, criterio);
-        return cabeza1;
-    } else {
-        cabeza2->siguiente = combinarListas(cabeza1, cabeza2->siguiente, criterio);
-        return cabeza2;
-    }
 }
 
 void Lista::ordenarIntercambio(int criterio) {
@@ -494,10 +460,101 @@ Nodo* Lista::getCola() {
     return cola;
 }
 
-void Lista::setCabeza(Nodo * newCabeza) {
+void Lista::setCabeza(Nodo* newCabeza) {
     cabeza = newCabeza;
 }
 
-void Lista::setCola(Nodo * newCola) {
+void Lista::setCola(Nodo* newCola) {
     cola = newCola;
+}
+
+void Lista::contarVocalesYConsonantes(int& vocales, int& consonantes) {
+    ::contarVocalesYConsonantes(cabeza, vocales, consonantes);
+}
+
+void Lista::contarVocalesYConsonantes(const std::string& texto, int index, int& vocales, int& consonantes) const {
+    if (index == texto.length()) {//Esto es hasta que el indice sea igual al tamaño del string
+        return;
+    }
+
+    char caracter = std::tolower(texto[index]);
+    if (std::isalpha(caracter)) {
+        if (caracter == 'a' || caracter == 'e' || caracter == 'i' || caracter == 'o' || caracter == 'u') {
+            ++vocales;
+        }
+        else {
+            ++consonantes;
+        }
+    }
+    contarVocalesYConsonantes(texto, index + 1, vocales, consonantes);
+}
+
+void Lista::MezclaPares() {
+    Nodo* actual = cabeza;
+    while (actual != nullptr && actual->siguiente != nullptr) {
+        std::string nombre1 = actual->dato.nombre;
+        std::string nombre2 = actual->siguiente->dato.nombre;
+        std::string resultado;
+
+        auto it1 = nombre1.begin();
+        auto it2 = nombre2.begin();
+
+        // Intercalar caracteres usando iteradores
+        while (it1 != nombre1.end() && it2 != nombre2.end()) {
+            resultado += *it1++;
+            resultado += *it2++;
+        }
+
+        // Agregar los caracteres restantes de nombre1, si los hay
+        while (it1 != nombre1.end()) {
+            resultado += *it1++;
+        }
+
+        // Agregar los caracteres restantes de nombre2, si los hay
+        while (it2 != nombre2.end()) {
+            resultado += *it2++;
+        }
+
+        // Imprimir el resultado
+        std::cout << "Par: " << nombre1 << "-" << nombre2 << " -> " << resultado << std::endl;
+
+        // Avanzar al siguiente par de nodos
+        actual = actual->siguiente->siguiente;
+        if (esCircular && actual == cabeza) break;
+    }
+}
+
+Nodo* Lista::combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio) {
+    if (cabeza1 == nullptr) {
+        return cabeza2;
+    }
+    if (cabeza2 == nullptr) {
+        return cabeza1;
+    }
+
+    string dato1, dato2;
+
+    switch (criterio) {
+    case 1:
+        dato1 = cabeza1->dato.cedula;
+        dato2 = cabeza2->dato.cedula;
+        break;
+    case 2:
+        dato1 = cabeza1->dato.nombre;
+        dato2 = cabeza2->dato.nombre;
+        break;
+    case 3:
+        dato1 = cabeza1->dato.apellido;
+        dato2 = cabeza2->dato.apellido;
+        break;
+    }
+
+    if (dato1 < dato2) {
+        cabeza1->siguiente = combinarListas(cabeza1->siguiente, cabeza2, criterio);
+        return cabeza1;
+    }
+    else {
+        cabeza2->siguiente = combinarListas(cabeza1, cabeza2->siguiente, criterio);
+        return cabeza2;
+    }
 }
