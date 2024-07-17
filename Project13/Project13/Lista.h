@@ -6,12 +6,21 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+<<<<<<< Updated upstream:Project13/Project13/Lista.h
 #include "Nodo.h"
 #include "Persona.h"
 #include "Ordenamientos.h"
 #include "Generaciones.h"
+=======
+#include <memory>
+#define WIN32_LEAN_AND_MEAN
+#include <functional>
+#include <vector>
+#include"I_Mezclar.h"
 
-class Lista {
+>>>>>>> Stashed changes:Lista.h
+
+class Lista:public Mezclar {
 private:
     Nodo* cabeza;
     Nodo* cola;
@@ -37,6 +46,19 @@ public:
     void cargarDesdeArchivo(const std::string& nombreArchivo);
     void insertarDesdeArchivo(Persona dato);
     void agregarAlArchivo(const Persona& dato) const;
+<<<<<<< Updated upstream:Project13/Project13/Lista.h
+=======
+
+    void eliminar(int);
+    int cantidad();
+    Persona datoEn(int);
+    void recorrer(std::function<void(Persona)> callback);
+    void insertarOrdenado(Persona per, int);
+    Persona eliminarPrimero();
+    void insertarUltimo(Persona persona);
+    void ordenarDistribucion(int criterio);
+   void MezclaPares() override;
+>>>>>>> Stashed changes:Lista.h
 };
 
 #endif // LISTA_H

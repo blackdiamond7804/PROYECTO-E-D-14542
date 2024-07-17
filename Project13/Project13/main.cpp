@@ -61,7 +61,11 @@ int main() {
             switch (opcion) {
             case ORDENAMIENTO_INTERCAMBIO:
                 // Llamar a la funci�n de ordenamiento de Intercambio
+<<<<<<< Updated upstream:Project13/Project13/main.cpp
                 cout << "Ordenamiento de Intercambio seleccionado." << endl;
+=======
+                MenuIntercambio();
+>>>>>>> Stashed changes:main.cpp
                 break;
             case ORDENAMIENTO_BURBUJA:
                 // Llamar a la funci�n de ordenamiento de Burbuja
@@ -72,6 +76,7 @@ int main() {
                 MenuShellMain();
                 break;
             case ORDENAMIENTO_RAPIDO:
+<<<<<<< Updated upstream:Project13/Project13/main.cpp
                 // Llamar a la funci�n de ordenamiento R�pido
                 cout << "Ordenamiento R�pido seleccionado." << endl;
                 break;
@@ -82,6 +87,18 @@ int main() {
             case ORDENAMIENTO_DISTRIBUCION:
                 // Llamar a la funci�n de ordenamiento de Distribuci�n
                 cout << "Ordenamiento de Distribuci�n seleccionado." << endl;
+=======
+                // Llamar a la funci�n de ordenamiento Quicksort
+                MenuQuicksortMain();
+                break;
+            case ORDENAMIENTO_RADITZ:
+                // Llamar a la funci�n de ordenamiento Raditz
+                MenuRadixMain();
+                break;
+            case ORDENAMIENTO_DISTRIBUCION:
+                // Llamar a la funci�n de ordenamiento de Distribuci�n
+                MenuDistribucion();
+>>>>>>> Stashed changes:main.cpp
                 break;
             }
         }

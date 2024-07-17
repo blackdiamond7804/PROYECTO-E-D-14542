@@ -4,6 +4,8 @@
 #include "Persona.h"
 #include "Nodo.h"
 #include <string>
+#include <memory>
+#define WIN32_LEAN_AND_MEAN
 #include <algorithm>
 
 std::string generarCorreo(Nodo* cabeza, Persona& persona, bool esCircular);

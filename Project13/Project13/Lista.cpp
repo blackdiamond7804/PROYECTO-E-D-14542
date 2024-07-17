@@ -243,4 +243,173 @@ void Lista::agregarAlArchivo(const Persona& dato) const {
     archivo << "Correo: " << dato.getCorreo() << "@espe.edu.ec"
         << ", Contrasenia inicial: " << dato.getContrasenaInicial()
         << ", Contrasenia: " << dato.getContrasena() << std::endl;
+<<<<<<< Updated upstream:Project13/Project13/Lista.cpp
+=======
+}
+
+
+int Lista::cantidad() {
+    if (cabeza == nullptr) {
+        return 0;
+    }
+    else {
+        int cant = 0;
+        Nodo* aux = cabeza;
+
+        do {
+            cant++;
+            aux = aux->siguiente;
+        } while (aux != nullptr);
+
+        return cant;
+    }
+}
+
+Persona Lista::datoEn(int posicion) {
+    if (cantidad() == 0 || posicion > cantidad()) {
+        std::cout << "No hay ningun nodo" << std::endl;
+    }
+
+    Nodo* aux = cabeza;
+
+    for (int i = 1; i < posicion; i++) aux = aux->siguiente;
+
+    return aux->dato;
+}
+
+void Lista::eliminar(int posicion) {
+    if (cantidad() >= posicion && posicion > 0) {
+        Nodo* aux = cabeza;
+        Nodo* anterior = cabeza;
+
+        for (int i = 1; i < posicion - 1; i++) anterior = anterior->siguiente;
+        if (posicion != 1) aux = anterior->siguiente;
+        if (aux != cabeza) anterior->siguiente = aux->siguiente;
+        if (aux == cabeza) cabeza = aux->siguiente;
+    }
+}
+
+void Lista::recorrer(std::function<void(Persona)> callback) {
+    Nodo* temp = cabeza;
+    while (temp) {
+        callback(temp->dato);
+        temp = temp->siguiente;
+    }
+}
+
+void Lista::insertarOrdenado(Persona valor, int criterio) {
+    Nodo* nuevo = new Nodo(valor);
+    if (!cabeza) {
+        cabeza = nuevo;
+        cola = nuevo;
+        return;
+    }
+    Nodo* actual = cabeza;
+    while (actual) {
+        bool debeInsertar = false;
+        switch (criterio) {
+        case 1:
+            debeInsertar = valor.cedula < actual->dato.cedula;
+            break;
+        case 2:
+            debeInsertar = valor.nombre < actual->dato.nombre;
+            break;
+        case 3:
+            debeInsertar = valor.apellido < actual->dato.apellido;
+            break;
+        }
+        if (debeInsertar) {
+            if (actual == cabeza) {
+                nuevo->siguiente = cabeza;
+                cabeza->anterior = nuevo;
+                cabeza = nuevo;
+            }
+            else {
+                nuevo->siguiente = actual;
+                nuevo->anterior = actual->anterior;
+                actual->anterior->siguiente = nuevo;
+                actual->anterior = nuevo;
+            }
+            return;
+        }
+        if (!actual->siguiente) {
+            actual->siguiente = nuevo;
+            nuevo->anterior = actual;
+            cola = nuevo;
+            return;
+        }
+        actual = actual->siguiente;
+    }
+}
+
+Persona Lista::eliminarPrimero() {
+    Nodo* temp = cabeza;
+    cabeza = cabeza->siguiente;
+    if (cabeza) {
+        cabeza->anterior = nullptr;
+    }
+
+    Persona dato = temp->dato;
+    delete temp;
+    return dato;
+}
+
+void Lista::insertarUltimo(Persona persona) {
+    Nodo* nuevo = new Nodo(persona);
+    if (cabeza == nullptr) {
+        cabeza = nuevo;
+    }
+    else {
+        Nodo* aux = cabeza;
+        while (aux->siguiente) {
+            aux = aux->siguiente;
+        }
+        aux->siguiente = nuevo;
+        nuevo->anterior = aux;
+    }
+}
+
+void Lista::ordenarDistribucion(int criterio) {
+    if (criterio >= 1 && criterio <= 3) {
+        BucketSort(cabeza, cola, esCircular, criterio);
+        guardarEnArchivo(nombreArchivo); // Guardar en el archivo original
+    }
+    else if (criterio == 4) {
+        ordenarCaracteres();
+    }
+}
+void Lista::MezclaPares()  {
+    Nodo* actual = cabeza;
+    while (actual != nullptr && actual->siguiente != nullptr) {
+        std::string nombre1 = actual->dato.nombre;
+        std::string nombre2 = actual->siguiente->dato.nombre;
+        std::string resultado;
+        
+        auto it1 = nombre1.begin();
+        auto it2 = nombre2.begin();
+        
+        // Intercalar caracteres usando iteradores
+        while (it1 != nombre1.end() && it2 != nombre2.end()) {
+            resultado += *it1++;
+            resultado += *it2++;
+        }
+        
+        // Agregar los caracteres restantes de nombre1, si los hay
+        while (it1 != nombre1.end()) {
+            resultado += *it1++;
+        }
+        
+        // Agregar los caracteres restantes de nombre2, si los hay
+        while (it2 != nombre2.end()) {
+            resultado += *it2++;
+        }
+        
+        // Imprimir el resultado
+        std::cout << "Par: " << nombre1 << "-" << nombre2 << " -> " << resultado << std::endl;
+        
+        // Avanzar al siguiente par de nodos
+        actual = actual->siguiente->siguiente;
+        if (esCircular && actual == cabeza) break;
+    }
+>>>>>>> Stashed changes:Lista.cpp
 }
