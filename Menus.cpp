@@ -31,6 +31,7 @@ enum OpcionesSubMenu2 {
 enum OpcionesAdicionales {
     INVERTIR_CARACTERES,
     ENCRIPTAR_NOMBRE_APELLIDO,
+    COMBINAR_LISTAS,
     RETROCEDER,
     NUM_OPCIONES_ADICIONALES
 };
@@ -112,6 +113,30 @@ void mostrarSubMenu2(int opcion) {
     cout << "******************************" << endl;
 }
 
+void mostrarSubMenuCombinarListas(int opcion) {
+    system("cls");
+    const char* opciones[] = {
+        "Ordenadas por nombre",
+        "Ordenadas por apellido",
+        "Ordenadas por cedula",
+        "Volver"
+    };
+
+    cout << "******************************" << endl;
+    cout << "Seleccione el criterio por el cual estan ordenadas las listas:" << endl;
+    for (int i = 0; i < NUM_OPCIONES_SUBMENU2; ++i) {
+        if (i == opcion) {
+            setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE); // Cambiar color
+            cout << " --> " << opciones[i] << "\n";
+            setConsoleColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Restaurar color
+        }
+        else {
+            cout << "     " << opciones[i] << "\n";
+        }
+    }
+    cout << "******************************" << endl;
+}
+
 void mostrarMenuOrden(int opcion) {
     system("cls");
     const char* opciones[] = {
@@ -143,6 +168,7 @@ void mostrarAdicional(int opcion) {
     const char* opciones[] = {
         "Invertir caracteres",
         "Encriptar nombres y apellidos",
+        "Combinar listas",
         "Volver"
     };
 
@@ -284,6 +310,36 @@ void menuAdicional(Lista& lista) {
                 encriptado(lista, num);
                 cout << "Presione cualquier tecla para continuar...";
                 _getch(); // Espera una tecla antes de continuar
+                break;
+            }
+            case COMBINAR_LISTAS: {
+                int criteri = 0;
+                bool continuarOrden = true;
+                while (continuarOrden) {
+                    mostrarSubMenuCombinarListas(criteri);
+                    int teclaOrden = _getch();
+                    switch (teclaOrden) {
+                    case 72: // Flecha arriba
+                        criteri = (criteri - 1 + 4) % 4; // 4 opciones en el menú de ordenación
+                        break;
+                    case 80: // Flecha abajo
+                        criteri = (criteri + 1) % 4;
+                        break;
+                    case 13: // Enter
+                        if (criteri == 3) {
+                            continuarOrden = false;
+                        } else {
+                            Lista lista2(false, "Datos_Personas.txt");
+                            Lista listaCombinada(false);
+                            listaCombinada.setCabeza(lista.combinarListas(lista.getCabeza(), lista2.getCabeza(), criteri + 1));
+                            cout << "Lista combinada: " << endl;
+                            listaCombinada.imprimir();
+                            cout << "Presione cualquier tecla para continuar...";
+                            _getch(); // Espera una tecla antes de continuar
+                        }
+                        break;
+                    }
+                }
                 break;
             }
             case RETROCEDER:

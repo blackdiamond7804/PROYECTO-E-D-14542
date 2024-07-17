@@ -56,9 +56,12 @@ public:
     void insertarUltimo(Persona persona);
     void ordenarDistribucion(int criterio);
     void InertirPersonas(int criterio);
+    Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
    
     Nodo* getCabeza();
     Nodo* getCola();
+    void setCabeza(Nodo* cabeza);
+    void setCola(Nodo* cola);
 };
 
 #endif // LISTA_H

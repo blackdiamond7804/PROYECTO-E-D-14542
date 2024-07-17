@@ -67,7 +67,7 @@ void Lista::insertar(Persona dato) {
 
     cedulasRegistradas.insert(dato.cedula);
 
-    // Agregar al archivo después de insertar
+    // Agregar al archivo despuï¿½s de insertar
     agregarAlArchivo(dato);
 }
 
@@ -161,6 +161,40 @@ void Lista::InertirPersonas(int criterio) {
     }
     std::string contenidoOrdenado = obtenerContenidoOrdenado();
     crearBackup(nombreArchivo, contenidoOrdenado);
+}
+
+Nodo* Lista::combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio) {
+    if (cabeza1 == nullptr) {
+        return cabeza2;
+    }
+    if (cabeza2 == nullptr) {
+        return cabeza1;
+    }
+
+    string dato1, dato2;
+
+    switch (criterio) {
+        case 1:
+            dato1 = cabeza1->dato.cedula;
+            dato2 = cabeza2->dato.cedula;
+            break;
+        case 2:
+            dato1 = cabeza1->dato.nombre;
+            dato2 = cabeza2->dato.nombre;
+            break;
+        case 3:
+            dato1 = cabeza1->dato.apellido;
+            dato2 = cabeza2->dato.apellido;
+            break;
+    }
+
+    if (dato1 < dato2) {
+        cabeza1->siguiente = combinarListas(cabeza1->siguiente, cabeza2, criterio);
+        return cabeza1;
+    } else {
+        cabeza2->siguiente = combinarListas(cabeza1, cabeza2->siguiente, criterio);
+        return cabeza2;
+    }
 }
 
 void Lista::ordenarIntercambio(int criterio) {
@@ -458,4 +492,12 @@ Nodo* Lista::getCabeza() {
 
 Nodo* Lista::getCola() {
     return cola;
+}
+
+void Lista::setCabeza(Nodo * newCabeza) {
+    cabeza = newCabeza;
+}
+
+void Lista::setCola(Nodo * newCola) {
+    cola = newCola;
 }
