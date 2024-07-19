@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -57,6 +58,16 @@ public:
 
     string getContrasenaInicial() const {
         return contrasenaInicial;
+    }
+
+    friend ostream& operator<<(ostream& os, const Persona& persona) {
+        os << "Nombre: " << persona.nombre << " " << persona.segundoNombre
+            << ", Apellido: " << persona.apellido
+            << ", Cedula: " << persona.cedula
+            << ", Correo: " << persona.correo
+            << ", Contrasenia inicial: " << persona.contrasenaInicial
+            << ", Contrasenia: " << persona.contrasena;
+        return os;
     }
 };
 

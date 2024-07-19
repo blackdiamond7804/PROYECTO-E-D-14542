@@ -558,3 +558,26 @@ Nodo* Lista::combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio) {
         return cabeza2;
     }
 }
+
+//metodo para insertar en arbol
+void Lista::leerArchivoYInsertarEnArbol(Arbol& arbol) {
+    std::ifstream archivo("Datos_Personas.txt");
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo " << std::endl;
+        return;
+    }
+
+    std::string nombre, segundoNombre, apellido, cedula, correo, contrasenaInicial, contrasena;
+    std::string dummy;
+    while (archivo >> dummy >> nombre >> segundoNombre >> dummy >> apellido >> dummy >> cedula) {
+        archivo >> dummy >> correo >> dummy >> dummy >> contrasenaInicial >> dummy >> contrasena;
+        correo = correo.substr(0, correo.find('@'));
+        Persona persona(nombre, segundoNombre == "null" ? "" : segundoNombre, apellido, cedula);
+        persona.setCorreo(correo);
+        persona.setContrasena(contrasena);
+        persona.setContrasenaInicial(contrasenaInicial);
+        arbol.Insertar(arbol.getRaiz(), persona, NULL);
+
+    }
+}

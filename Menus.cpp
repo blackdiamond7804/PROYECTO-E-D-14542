@@ -36,6 +36,7 @@ enum OpcionesAdicionales {
     MEZCLA_NOMBRES,
     COMBINAR_LISTAS,
     BUSCAR,
+    INSERTAR_DATOS_ARBOL,
     RETROCEDER,
     NUM_OPCIONES_ADICIONALES
 };
@@ -161,6 +162,7 @@ void mostrarAdicional(int opcion) {
         "Mezclar nombres",
         "Combinar listas",
         "Buscar",
+        "Insertar datos en el arbol e imprimirlos",
         "Volver"
     };
 
@@ -475,6 +477,13 @@ void menuAdicional(Lista& lista) {
             case BUSCAR:
                 menuBusqueda(lista);
                 break;
+            case INSERTAR_DATOS_ARBOL: {
+                Arbol arbol;
+                int c = 0;
+                lista.leerArchivoYInsertarEnArbol(arbol);
+                arbol.mostrarConPausa();
+                break;
+            }
             case RETROCEDER:
                 continuar = false;
                 break;

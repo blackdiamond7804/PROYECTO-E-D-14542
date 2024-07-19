@@ -13,6 +13,7 @@
 #include "Ordenamientos.h"
 #include "Generaciones.h"
 #include"I_Mezclar.h"
+#include "Arbol.h"
 
 
 class Lista :public Mezclar {
@@ -66,6 +67,7 @@ public:
     void contarVocalesYConsonantes(const std::string& texto, int index, int& vocales, int& consonantes) const;
     void MezclaPares() override;
     Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
+    void leerArchivoYInsertarEnArbol(Arbol& arbol);
 };
 
 #endif // LISTA_H
