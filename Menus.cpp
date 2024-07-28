@@ -36,7 +36,8 @@ enum OpcionesAdicionales {
     MEZCLA_NOMBRES,
     COMBINAR_LISTAS,
     BUSCAR,
-    INSERTAR_DATOS_ARBOL, //Quitarlo y ponerlo en un menu con todos los tipos de arboles
+    INSERTAR_DATOS_ARBOL,
+    CARGAR_ARBOL_RADIX, //Quitarlo y ponerlo en un menu con todos los tipos de arboles
     RETROCEDER,
     NUM_OPCIONES_ADICIONALES
 };
@@ -162,7 +163,8 @@ void mostrarAdicional(int opcion) {
         "Mezclar nombres",
         "Combinar listas",
         "Buscar",
-        "Insertar datos en el arbol B e imprimirlos",//Quitarlo y ponerlo en un menu para los arboles
+        "Insertar datos en el arbol B e imprimirlos",
+        "Inserat datos en el arbol radix e imprimirlos",//Quitarlo y ponerlo en un menu para los arboles
         "Volver"
     };
 
@@ -477,7 +479,7 @@ void menuAdicional(Lista& lista) {
             case BUSCAR:
                 menuBusqueda(lista);
                 break;
-            case INSERTAR_DATOS_ARBOL: { //Esto hay que quitarlo
+            case INSERTAR_DATOS_ARBOL: { // Esto hay que quitarlo
                 int n;
                 cout << "Digite el grado del arbol: " << endl;
                 cin >> n;
@@ -485,6 +487,22 @@ void menuAdicional(Lista& lista) {
                 
                 lista.leerArchivoEInsertarEnArbolB(arbol);
                 arbol.mostrarConPausa();
+                break;
+            }
+            case CARGAR_ARBOL_RADIX: { // Nueva opción para cargar el árbol Radix
+                ArbolRadix arbolRadix; // Crear una instancia local de ArbolRadix
+                
+                // Usa la función de Lista para cargar datos en el árbol Radix local
+                lista.cargarArchivoEnArbolRadix(arbolRadix);
+                
+                cout << "Árbol Radix cargado con los datos del archivo." << endl;
+                cout << "Presione cualquier tecla para mostrar el contenido del árbol Radix..." << endl;
+                _getch(); // Espera una tecla antes de continuar
+                
+                arbolRadix.mostrar(); // Muestra el contenido del árbol Radix
+                
+                cout << "Presione cualquier tecla para continuar...";
+                _getch(); // Espera una tecla antes de continuar
                 break;
             }
             case RETROCEDER:
@@ -500,6 +518,7 @@ void menuAdicional(Lista& lista) {
         }
     }
 }
+
 
 
 void subMenuListaShell(Lista& lista) {

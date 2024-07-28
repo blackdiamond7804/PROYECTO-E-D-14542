@@ -8,3 +8,5 @@ Nombre: Gustavo David, Apellido: Caiza, Cedula: 1719690487
 Correo: gdCaiza@espe.edu.ec, Contrasenia inicial: agdziac3, Contrasenia: cifbkce
 Nombre: Peter Jose, Apellido: Pardo, Cedula: 1717430100
 Correo: pjPardo@espe.edu.ec, Contrasenia inicial: opedrap4, Contrasenia: qrgftcr
+Nombre: Javier Pepe, Apellido: Canarte, Cedula: 1725916645
+Correo: jpCanarte@espe.edu.ec, Contrasenia inicial: ejetranac, Contrasenia: glgvtcpce

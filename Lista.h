@@ -13,16 +13,17 @@
 #include "Persona.h"
 #include "Ordenamientos.h"
 #include "Generaciones.h"
-#include"I_Mezclar.h"
+#include "I_Mezclar.h"
+#include "ArbolRadix.h"  // Incluye la clase ArbolRadix
 
-
-class Lista :public Mezclar {
+class Lista : public Mezclar {
 private:
     Nodo* cabeza;
     Nodo* cola;
     bool esCircular;
     std::unordered_set<std::string> cedulasRegistradas;
     std::string nombreArchivo;
+    ArbolRadix arbolRadix; // Añade una instancia del árbol Radix
 
     void crearBackup(const std::string& nombreArchivo, const std::string& contenido);
 
@@ -70,6 +71,9 @@ public:
     void MezclaPares() override;
     Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
     void leerArchivoEInsertarEnArbolB(ArbolB& arbol);
+    
+    // Nueva función para cargar el archivo en el árbol Radix
+    void cargarArchivoEnArbolRadix(ArbolRadix& arbol);
 };
 
 #endif // LISTA_H

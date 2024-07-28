@@ -10,6 +10,7 @@
 #include "Validacion.h"
 #include "Busquedas.h"
 #include "ArbolB.h"
+#include"ArbolRadix.h"
 
 void setConsoleColor(WORD color);
 void mostrarMenu(int opcion);
