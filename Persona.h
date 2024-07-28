@@ -60,6 +60,14 @@ public:
         return contrasenaInicial;
     }
 
+    bool operator<(const Persona& other) const {
+        return cedula < other.cedula;
+    }
+
+    bool operator>(const Persona& other) const {
+        return cedula > other.cedula;
+    }
+
     friend ostream& operator<<(ostream& os, const Persona& persona) {
         os << "Nombre: " << persona.nombre << " " << persona.segundoNombre
             << ", Apellido: " << persona.apellido

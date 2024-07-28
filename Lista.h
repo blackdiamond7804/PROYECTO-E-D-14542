@@ -8,12 +8,12 @@
 #include <string>
 #include <functional>
 #include <vector>
+#include "ArbolB.h"
 #include "Nodo.h"
 #include "Persona.h"
 #include "Ordenamientos.h"
 #include "Generaciones.h"
 #include"I_Mezclar.h"
-#include "Arbol.h"
 
 
 class Lista :public Mezclar {
@@ -32,6 +32,7 @@ public:
 
     bool verificarCedula(const std::string& cedula);
     void insertar(Persona dato);
+    void insertarEn(int indice, Persona dato);
     void ordenar(int criterio);
     void ordenarCaracteres();
     void ordenarRadix(int criterio);
@@ -52,6 +53,7 @@ public:
     void eliminar(int);
     int cantidad();
     Persona datoEn(int);
+    Persona* nodoEn(int); // Metodo para devolver NodoArbolBs
     void recorrer(std::function<void(Persona)> callback);
     void insertarOrdenado(Persona per, int);
     Persona eliminarPrimero();
@@ -67,7 +69,7 @@ public:
     void contarVocalesYConsonantes(const std::string& texto, int index, int& vocales, int& consonantes) const;
     void MezclaPares() override;
     Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
-    void leerArchivoYInsertarEnArbol(Arbol& arbol);
+    void leerArchivoEInsertarEnArbolB(ArbolB& arbol);
 };
 
 #endif // LISTA_H

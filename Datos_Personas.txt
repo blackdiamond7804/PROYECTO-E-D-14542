@@ -1,6 +1,10 @@
-Nombre: Ana Gabriela,, Apellido: Mendez,, Cedula: 1710566850
-Correo: agMendez@espe.edu.ec, Contrasenia inicial: zaaednem1,, Contrasenia: bccgfpgo
-Nombre: Brayan Josue,, Apellido: Jacome,, Cedula: 1756116206
-Correo: bjJacome@espe.edu.ec, Contrasenia inicial: ebemocaj,, Contrasenia: gdgoqecl
-Nombre: Kevin Julio,, Apellido: Vasquez,, Cedula: 1725920720
-Correo: kjVasquez@espe.edu.ec, Contrasenia inicial: zkoeuqsav2,, Contrasenia: bmqgwsucx
+Nombre: Juan Pedro, Apellido: Garcia, Cedula: 1753688215
+Correo: jpGarcia@espe.edu.ec, Contrasenia inicial: ajoicrag, Contrasenia: clqketci
+Nombre: Vale Belinda, Apellido: Garces, Cedula: 1710520642
+Correo: vbGarces@espe.edu.ec, Contrasenia inicial: svaecrag1, Contrasenia: uxcgetci
+Nombre: Priscila Juana, Apellido: Caiza, Cedula: 1753688512
+Correo: pjCaiza@espe.edu.ec, Contrasenia inicial: apaziac2, Contrasenia: crcbkce
+Nombre: Gustavo David, Apellido: Caiza, Cedula: 1719690487
+Correo: gdCaiza@espe.edu.ec, Contrasenia inicial: agdziac3, Contrasenia: cifbkce
+Nombre: Peter Jose, Apellido: Pardo, Cedula: 1717430100
+Correo: pjPardo@espe.edu.ec, Contrasenia inicial: opedrap4, Contrasenia: qrgftcr

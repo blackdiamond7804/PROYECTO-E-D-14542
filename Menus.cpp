@@ -36,7 +36,7 @@ enum OpcionesAdicionales {
     MEZCLA_NOMBRES,
     COMBINAR_LISTAS,
     BUSCAR,
-    INSERTAR_DATOS_ARBOL,
+    INSERTAR_DATOS_ARBOL, //Quitarlo y ponerlo en un menu con todos los tipos de arboles
     RETROCEDER,
     NUM_OPCIONES_ADICIONALES
 };
@@ -162,7 +162,7 @@ void mostrarAdicional(int opcion) {
         "Mezclar nombres",
         "Combinar listas",
         "Buscar",
-        "Insertar datos en el arbol e imprimirlos",
+        "Insertar datos en el arbol B e imprimirlos",//Quitarlo y ponerlo en un menu para los arboles
         "Volver"
     };
 
@@ -477,10 +477,13 @@ void menuAdicional(Lista& lista) {
             case BUSCAR:
                 menuBusqueda(lista);
                 break;
-            case INSERTAR_DATOS_ARBOL: {
-                Arbol arbol;
-                int c = 0;
-                lista.leerArchivoYInsertarEnArbol(arbol);
+            case INSERTAR_DATOS_ARBOL: { //Esto hay que quitarlo
+                int n;
+                cout << "Digite el grado del arbol: " << endl;
+                cin >> n;
+                ArbolB arbol(n);
+                
+                lista.leerArchivoEInsertarEnArbolB(arbol);
                 arbol.mostrarConPausa();
                 break;
             }

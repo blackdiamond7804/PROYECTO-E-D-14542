@@ -71,6 +71,40 @@ void Lista::insertar(Persona dato) {
     agregarAlArchivo(dato);
 }
 
+void Lista::insertarEn(int indice, Persona dato) {
+    if (indice < 1) return;
+    Nodo* nuevo = new Nodo(dato);
+
+    if (indice == 1) {
+        nuevo->siguiente = cabeza;
+        if (cabeza != nullptr) {
+            cabeza->anterior = nuevo;
+        }
+        cabeza = nuevo;
+        if (cola == nullptr) {
+            cola = nuevo;
+        }
+        return;
+    }
+
+    Nodo* actual = cabeza;
+    for (int i = 1; i < indice - 1 && actual != nullptr; i++) {
+        actual = actual->siguiente;
+    }
+    if (actual == nullptr) return;
+
+    nuevo->siguiente = actual->siguiente;
+    if (actual->siguiente != nullptr) {
+        actual->siguiente->anterior = nuevo;
+    }
+    actual->siguiente = nuevo;
+    nuevo->anterior = actual;
+
+    if (nuevo->siguiente == nullptr) {
+        cola = nuevo;
+    }
+}
+
 void Lista::ordenarRadix(int criterio) {
     if (criterio >= 1 && criterio <= 3) {
         radixSortPersonas(cabeza, cola, esCircular, criterio);
@@ -341,6 +375,7 @@ int Lista::cantidad() {
 Persona Lista::datoEn(int posicion) {
     if (cantidad() == 0 || posicion > cantidad()) {
         std::cout << "No hay ningun nodo" << std::endl;
+        return Persona();
     }
 
     Nodo* aux = cabeza;
@@ -348,6 +383,18 @@ Persona Lista::datoEn(int posicion) {
     for (int i = 1; i < posicion; i++) aux = aux->siguiente;
 
     return aux->dato;
+}
+
+Persona* Lista::nodoEn(int posicion) {
+    if (cantidad() == 0 || posicion > cantidad()) {
+        std::cout << "No hay ningun nodo" << std::endl;
+        return nullptr;
+    }
+    Nodo* aux = cabeza;
+
+    for (int i = 1; i < posicion; i++) aux = aux->siguiente;
+
+    return &(aux->dato);
 }
 
 void Lista::eliminar(int posicion) {
@@ -559,12 +606,11 @@ Nodo* Lista::combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio) {
     }
 }
 
-//metodo para insertar en arbol
-void Lista::leerArchivoYInsertarEnArbol(Arbol& arbol) {
-    std::ifstream archivo("Datos_Personas.txt");
+void Lista::leerArchivoEInsertarEnArbolB(ArbolB& arbol) {
+    std::ifstream archivo(nombreArchivo);
 
     if (!archivo) {
-        std::cerr << "No se pudo abrir el archivo " << std::endl;
+        std::cerr << "No se pudo abrir el archivo " << nombreArchivo << std::endl;
         return;
     }
 
@@ -577,7 +623,17 @@ void Lista::leerArchivoYInsertarEnArbol(Arbol& arbol) {
         persona.setCorreo(correo);
         persona.setContrasena(contrasena);
         persona.setContrasenaInicial(contrasenaInicial);
-        arbol.Insertar(arbol.getRaiz(), persona, NULL);
 
+        std::cout << "Intentando insertar: " << persona.cedula << std::endl;
+        if (!arbol.buscar(persona.cedula)) {
+            std::cout << "Insertando: " << persona.cedula << std::endl;
+            arbol.insertar(persona);
+        }
+        else {
+            std::cout << "La cedula ya esta registrada: " << persona.cedula << std::endl;
+        }
     }
+
+    archivo.close();
 }
+

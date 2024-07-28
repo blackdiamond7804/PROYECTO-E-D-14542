@@ -10,16 +10,14 @@ public:
     Nodo* siguiente;
     Nodo* anterior;
 
-    //Nodos para el arbol
-    Nodo* derecha;
-    Nodo* izquierda;
-    Nodo* padre;
-
-    Nodo(const Persona& p, Nodo* pad) : dato(p), izquierda(nullptr), derecha(nullptr), padre(pad) {}
     Nodo(const Persona& p) : dato(p), siguiente(nullptr), anterior(nullptr) {}
 
     //Metodos para la creacion del nodo de arbol
-
+    //Nodos para el arbol
+    /*Nodo* derecha;
+    Nodo* izquierda;
+    Nodo* padre;
+    Nodo(const Persona& p, Nodo* pad) : dato(p), izquierda(nullptr), derecha(nullptr), padre(pad) {}
     void setDerecha(Nodo* derecha) {
         this->derecha = derecha;
     }
@@ -42,7 +40,7 @@ public:
 
     void setPadre(Nodo* padre) {
         this->padre = padre;
-    }
+    }*/
 };
 
 #endif

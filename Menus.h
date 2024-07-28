@@ -9,6 +9,7 @@
 #include "Persona.h"
 #include "Validacion.h"
 #include "Busquedas.h"
+#include "ArbolB.h"
 
 void setConsoleColor(WORD color);
 void mostrarMenu(int opcion);
