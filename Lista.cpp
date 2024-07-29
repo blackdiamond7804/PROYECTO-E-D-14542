@@ -67,7 +67,7 @@ void Lista::insertar(Persona dato) {
 
     cedulasRegistradas.insert(dato.cedula);
 
-    // Agregar al archivo después de insertar
+    // Agregar al archivo despuï¿½s de insertar
     agregarAlArchivo(dato);
 }
 
@@ -520,7 +520,7 @@ void Lista::contarVocalesYConsonantes(int& vocales, int& consonantes) {
 }
 
 void Lista::contarVocalesYConsonantes(const std::string& texto, int index, int& vocales, int& consonantes) const {
-    if (index == texto.length()) {//Esto es hasta que el indice sea igual al tamaño del string
+    if (index == texto.length()) {//Esto es hasta que el indice sea igual al tamaï¿½o del string
         return;
     }
 
@@ -607,6 +607,37 @@ Nodo* Lista::combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio) {
 }
 
 void Lista::leerArchivoEInsertarEnArbolB(ArbolB& arbol) {
+    std::ifstream archivo(nombreArchivo);
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo " << nombreArchivo << std::endl;
+        return;
+    }
+
+    std::string nombre, segundoNombre, apellido, cedula, correo, contrasenaInicial, contrasena;
+    std::string dummy;
+    while (archivo >> dummy >> nombre >> segundoNombre >> dummy >> apellido >> dummy >> cedula) {
+        archivo >> dummy >> correo >> dummy >> dummy >> contrasenaInicial >> dummy >> contrasena;
+        correo = correo.substr(0, correo.find('@'));
+        Persona persona(nombre, segundoNombre == "null" ? "" : segundoNombre, apellido, cedula);
+        persona.setCorreo(correo);
+        persona.setContrasena(contrasena);
+        persona.setContrasenaInicial(contrasenaInicial);
+
+        std::cout << "Intentando insertar: " << persona.cedula << std::endl;
+        if (!arbol.buscar(persona.cedula)) {
+            std::cout << "Insertando: " << persona.cedula << std::endl;
+            arbol.insertar(persona);
+        }
+        else {
+            std::cout << "La cedula ya esta registrada: " << persona.cedula << std::endl;
+        }
+    }
+
+    archivo.close();
+}
+
+void Lista::leerArchivoEInsertarEnArbolRB(ArbolRB & arbol) {
     std::ifstream archivo(nombreArchivo);
 
     if (!archivo) {

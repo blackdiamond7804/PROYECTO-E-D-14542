@@ -162,7 +162,7 @@ void mostrarAdicional(int opcion) {
         "Mezclar nombres",
         "Combinar listas",
         "Buscar",
-        "Insertar datos en el arbol B e imprimirlos",//Quitarlo y ponerlo en un menu para los arboles
+        "Insertar datos en un arbol e imprimirlos",//Quitarlo y ponerlo en un menu para los arboles
         "Volver"
     };
 
@@ -478,13 +478,31 @@ void menuAdicional(Lista& lista) {
                 menuBusqueda(lista);
                 break;
             case INSERTAR_DATOS_ARBOL: { //Esto hay que quitarlo
-                int n;
-                cout << "Digite el grado del arbol: " << endl;
-                cin >> n;
-                ArbolB arbol(n);
-                
-                lista.leerArchivoEInsertarEnArbolB(arbol);
-                arbol.mostrarConPausa();
+                int arbolopcion;
+                cout << "Seleccione el tipo de arbol: " << endl;
+                cout << "1. Arbol B" << endl;
+                cout << "2. Arbol Rojo-Negro" << endl;
+                cin >> arbolopcion;
+
+                switch (arbolopcion) {
+                    case 1: {
+                        int t;
+                        cout << "Digite el grado del arbol: " << endl;
+                        cin >> t;
+                        ArbolB arbol(t);
+                        lista.leerArchivoEInsertarEnArbolB(arbol);
+                        arbol.mostrarConPausa();
+                        break;
+                    };
+                    case 2: {
+                        ArbolRB arbol;
+                        lista.leerArchivoEInsertarEnArbolRB(arbol);
+                        arbol.mostrarConPausa();
+                    }
+                    default: {
+                        cout << "Opción inválida" << endl;
+                    }
+                }
                 break;
             }
             case RETROCEDER:

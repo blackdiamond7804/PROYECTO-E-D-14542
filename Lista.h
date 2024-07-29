@@ -9,11 +9,12 @@
 #include <functional>
 #include <vector>
 #include "ArbolB.h"
+#include "ArbolRB.h"
 #include "Nodo.h"
 #include "Persona.h"
 #include "Ordenamientos.h"
 #include "Generaciones.h"
-#include"I_Mezclar.h"
+#include "I_Mezclar.h"
 
 
 class Lista :public Mezclar {
@@ -70,6 +71,7 @@ public:
     void MezclaPares() override;
     Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
     void leerArchivoEInsertarEnArbolB(ArbolB& arbol);
+    void leerArchivoEInsertarEnArbolRB(ArbolRB& arbol);
 };
 
 #endif // LISTA_H
