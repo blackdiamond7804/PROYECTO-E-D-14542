@@ -483,6 +483,7 @@ void menuAdicional(Lista& lista) {
                 cout << "1. Arbol B" << endl;
                 cout << "2. Arbol Rojo-Negro" << endl;
                 cout << "3. Arbol AA" << endl;
+                cout << "4. Arbol B+" << endl;
                 cin >> arbolopcion;
 
                 switch (arbolopcion) {
@@ -499,11 +500,22 @@ void menuAdicional(Lista& lista) {
                         ArbolRB arbol;
                         lista.leerArchivoEInsertarEnArbolRB(arbol);
                         arbol.mostrarConPausa();
+                        break;
                     }
                     case 3: {
                         ArbolAA arbol;
                         lista.leerArchivoEInsertarEnArbolAA(arbol);
                         arbol.mostrarConPausa();
+                        break;
+                    }
+                    case 4: {
+                        int t;
+                        cout << "Digite el grado del arbol: " << endl;
+                        cin >> t;
+                        ArbolBmas arbol(t);
+                        lista.leerArchivoEInsertarEnArbolBmas(arbol);
+                        arbol.mostrarConPausa();
+                        break;
                     }
                     default: {
                         cout << "Opción inválida" << endl;

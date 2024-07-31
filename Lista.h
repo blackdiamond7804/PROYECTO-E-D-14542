@@ -11,6 +11,7 @@
 #include "ArbolB.h"
 #include "ArbolRB.h"
 #include "ArbolAA.h"
+#include "ArbolBmas.h"
 #include "Nodo.h"
 #include "Persona.h"
 #include "Ordenamientos.h"
@@ -74,6 +75,7 @@ public:
     void leerArchivoEInsertarEnArbolB(ArbolB& arbol);
     void leerArchivoEInsertarEnArbolRB(ArbolRB& arbol);
     void leerArchivoEInsertarEnArbolAA(ArbolAA& arbol);
+    void leerArchivoEInsertarEnArbolBmas(ArbolBmas& arbol);
 };
 
 #endif // LISTA_H

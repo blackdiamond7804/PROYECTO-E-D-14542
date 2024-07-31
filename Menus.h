@@ -11,6 +11,7 @@
 #include "Busquedas.h"
 #include "ArbolB.h"
 #include "ArbolRB.h"
+#include "ArbolBmas.h"
 
 void setConsoleColor(WORD color);
 void mostrarMenu(int opcion);
