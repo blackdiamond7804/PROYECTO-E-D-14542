@@ -4,6 +4,10 @@
 
 void ArbolB::insertar(Persona k) {
     
+    if (root != nullptr && buscar(k.cedula)) {
+        std::cout << "La cedula ya esta registrada" << std::endl;
+        return;
+    }
 
     if (root == nullptr) {
         root = new NodoArbolB(t, true);

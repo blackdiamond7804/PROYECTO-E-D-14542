@@ -62,27 +62,27 @@ int main() {
         case 13: // Enter
             switch (opcion) {
             case ORDENAMIENTO_INTERCAMBIO:
-                // Llamar a la función de ordenamiento de Intercambio
+                // Llamar a la funciï¿½n de ordenamiento de Intercambio
                 MenuIntercambio();
                 break;
             case ORDENAMIENTO_BURBUJA:
-                // Llamar a la función de ordenamiento de Burbuja
+                // Llamar a la funciï¿½n de ordenamiento de Burbuja
                 MenuBurbujaMain();
                 break;
             case ORDENAMIENTO_SHELL:
-                // Llamar a la función de ordenamiento de Shell
+                // Llamar a la funciï¿½n de ordenamiento de Shell
                 MenuShellMain();
                 break;
             case ORDENAMIENTO_RAPIDO:
-                // Llamar a la función de ordenamiento Quicksort
+                // Llamar a la funciï¿½n de ordenamiento Quicksort
                 MenuQuicksortMain();
                 break;
             case ORDENAMIENTO_RADITZ:
-                // Llamar a la función de ordenamiento Raditz
+                // Llamar a la funciï¿½n de ordenamiento Raditz
                 MenuRadixMain();
                 break;
             case ORDENAMIENTO_DISTRIBUCION:
-                // Llamar a la función de ordenamiento de Distribución
+                // Llamar a la funciï¿½n de ordenamiento de Distribuciï¿½n
                 MenuDistribucion();
                 break;
             }
