@@ -729,3 +729,27 @@ void Lista::leerArchivoEInsertarEnArbolBmas(ArbolBmas& arbol) {
 
     archivo.close();
 }
+void Lista::cargarArchivoEnArbolRadix(ArbolRadix& arbol) {
+    std::ifstream archivo(nombreArchivo);
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo " << nombreArchivo << std::endl;
+        return;
+    }
+
+    std::string nombre, segundoNombre, apellido, cedula, correo, contrasenaInicial, contrasena;
+    std::string dummy;
+    while (archivo >> dummy >> nombre >> segundoNombre >> dummy >> apellido >> dummy >> cedula) {
+        archivo >> dummy >> correo >> dummy >> dummy >> contrasenaInicial >> dummy >> contrasena;
+        
+        // Crear un objeto Persona solo con el primer nombre (o nombre completo si así lo prefieres)
+        Persona persona(nombre, segundoNombre == "null" ? "" : segundoNombre, apellido, cedula);
+        
+        // Insertar el objeto Persona en el árbol Radix
+        arbol.insertar(persona);
+
+        std::cout << "Intentando insertar: " << nombre << " " <<segundoNombre << apellido << std::endl;
+    }
+
+    archivo.close();
+}

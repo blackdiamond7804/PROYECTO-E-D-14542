@@ -17,7 +17,7 @@
 #include "Ordenamientos.h"
 #include "Generaciones.h"
 #include "I_Mezclar.h"
-
+#include"ArbolRadix.h"
 
 class Lista :public Mezclar {
 private:
@@ -76,6 +76,7 @@ public:
     void leerArchivoEInsertarEnArbolRB(ArbolRB& arbol);
     void leerArchivoEInsertarEnArbolAA(ArbolAA& arbol);
     void leerArchivoEInsertarEnArbolBmas(ArbolBmas& arbol);
+    void cargarArchivoEnArbolRadix(ArbolRadix& arbol);
 };
 
 #endif // LISTA_H

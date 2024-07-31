@@ -484,6 +484,7 @@ void menuAdicional(Lista& lista) {
                 cout << "2. Arbol Rojo-Negro" << endl;
                 cout << "3. Arbol AA" << endl;
                 cout << "4. Arbol B+" << endl;
+                cout << "5. Arbol Radix" << endl;
                 cin >> arbolopcion;
 
                 switch (arbolopcion) {
@@ -516,6 +517,24 @@ void menuAdicional(Lista& lista) {
                         lista.leerArchivoEInsertarEnArbolBmas(arbol);
                         arbol.mostrarConPausa();
                         break;
+                    }
+                    case 5:
+                    {
+                     ArbolRadix arbolRadix; 
+                
+                lista.cargarArchivoEnArbolRadix(arbolRadix);
+                
+                cout << "Arbol Radix cargado con los datos del archivo." << endl;
+                cout << "Presione cualquier tecla para mostrar el contenido del árbol Radix..." << endl;
+                _getch(); 
+                
+                arbolRadix.mostrarNombres();
+                arbolRadix.mostrarNombre2();
+                arbolRadix.mostrarApellidos();
+                 
+                cout << "Presione cualquier tecla para continuar...";
+                _getch(); 
+                break;   
                     }
                     default: {
                         cout << "Opción inválida" << endl;

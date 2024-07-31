@@ -12,6 +12,7 @@
 #include "ArbolB.h"
 #include "ArbolRB.h"
 #include "ArbolBmas.h"
+#include "ArbolRadix.h"
 
 void setConsoleColor(WORD color);
 void mostrarMenu(int opcion);
