@@ -482,6 +482,7 @@ void menuAdicional(Lista& lista) {
                 cout << "Seleccione el tipo de arbol: " << endl;
                 cout << "1. Arbol B" << endl;
                 cout << "2. Arbol Rojo-Negro" << endl;
+                cout << "3. Arbol AA" << endl;
                 cin >> arbolopcion;
 
                 switch (arbolopcion) {
@@ -497,6 +498,11 @@ void menuAdicional(Lista& lista) {
                     case 2: {
                         ArbolRB arbol;
                         lista.leerArchivoEInsertarEnArbolRB(arbol);
+                        arbol.mostrarConPausa();
+                    }
+                    case 3: {
+                        ArbolAA arbol;
+                        lista.leerArchivoEInsertarEnArbolAA(arbol);
                         arbol.mostrarConPausa();
                     }
                     default: {

@@ -668,3 +668,33 @@ void Lista::leerArchivoEInsertarEnArbolRB(ArbolRB & arbol) {
     archivo.close();
 }
 
+void Lista::leerArchivoEInsertarEnArbolAA(ArbolAA& arbol) {
+    std::ifstream archivo(nombreArchivo);
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo " << nombreArchivo << std::endl;
+        return;
+    }
+
+    std::string nombre, segundoNombre, apellido, cedula, correo, contrasenaInicial, contrasena;
+    std::string dummy;
+    while (archivo >> dummy >> nombre >> segundoNombre >> dummy >> apellido >> dummy >> cedula) {
+        archivo >> dummy >> correo >> dummy >> dummy >> contrasenaInicial >> dummy >> contrasena;
+        correo = correo.substr(0, correo.find('@'));
+        Persona persona(nombre, segundoNombre == "null" ? "" : segundoNombre, apellido, cedula);
+        persona.setCorreo(correo);
+        persona.setContrasena(contrasena);
+        persona.setContrasenaInicial(contrasenaInicial);
+
+        std::cout << "Intentando insertar: " << persona.cedula << std::endl;
+        if (!arbol.buscar(persona.cedula)) {
+            std::cout << "Insertando: " << persona.cedula << std::endl;
+            arbol.insertar(persona);
+        }
+        else {
+            std::cout << "La cedula ya esta registrada: " << persona.cedula << std::endl;
+        }
+    }
+
+    archivo.close();
+}

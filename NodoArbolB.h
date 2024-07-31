@@ -15,7 +15,7 @@ public:
 
 	NodoArbolB(int t1, bool leaf1);
 
-	bool buscar(string k);
+	bool buscar(const std::string& k);
 	void InsertarNodoLleno(Persona k);
 	void splitChild(int i, NodoArbolB* y);
 	void imprimirArbolB(int indent = 0);

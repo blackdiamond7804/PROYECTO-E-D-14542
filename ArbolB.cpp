@@ -3,6 +3,8 @@
 #include <conio.h>
 
 void ArbolB::insertar(Persona k) {
+    
+
     if (root == nullptr) {
         root = new NodoArbolB(t, true);
         root->llaves->insertar(k);
@@ -11,11 +13,11 @@ void ArbolB::insertar(Persona k) {
     else {
         if (root->n == 2 * t - 1) {
             NodoArbolB* s = new NodoArbolB(t, false);
-            s->C[0] = root;
+            *(s->C) = root;
             s->splitChild(0, root);
             int i = 0;
             if (s->llaves->datoEn(i + 1).cedula < k.cedula) i++;
-            s->C[i]->InsertarNodoLleno(k);
+            (*(s->C + i))->InsertarNodoLleno(k);
             root = s;
         }
         else {
@@ -25,7 +27,7 @@ void ArbolB::insertar(Persona k) {
 }
 
 bool ArbolB::buscar(std::string cedula) {
-    return root == nullptr ? false : root->buscar(cedula);
+    return (root == nullptr) ? false : root->buscar(cedula);
 }
 
 

@@ -10,6 +10,7 @@
 #include <vector>
 #include "ArbolB.h"
 #include "ArbolRB.h"
+#include "ArbolAA.h"
 #include "Nodo.h"
 #include "Persona.h"
 #include "Ordenamientos.h"
@@ -72,6 +73,7 @@ public:
     Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
     void leerArchivoEInsertarEnArbolB(ArbolB& arbol);
     void leerArchivoEInsertarEnArbolRB(ArbolRB& arbol);
+    void leerArchivoEInsertarEnArbolAA(ArbolAA& arbol);
 };
 
 #endif // LISTA_H
