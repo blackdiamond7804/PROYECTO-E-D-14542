@@ -18,7 +18,7 @@ public:
 	bool buscar(const std::string& k);
 	void InsertarNodoLleno(Persona k);
 	void splitChild(int i, NodoArbolB* y);
-	void imprimirArbolB(int indent = 0);
+	void imprimirArbolB(int indent = 4);
 
 };
 

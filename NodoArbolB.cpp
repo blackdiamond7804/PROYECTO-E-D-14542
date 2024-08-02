@@ -4,7 +4,7 @@
 NodoArbolB::NodoArbolB(int _t, bool _leaf) {
     t = _t;
     leaf = _leaf;
-    llaves = new Lista();
+    llaves = new Lista(false,"");
     C = new NodoArbolB * [2 * t];
     n = 0;
 }
@@ -54,7 +54,7 @@ void NodoArbolB::imprimirArbolB(int indent) {
 
 bool NodoArbolB::buscar(const std::string& cedula) {
     int i = 0;
-    while (i < n && cedula > llaves->datoEn(i + 1).cedula) i++;
+    while (i + 1 < n && cedula > llaves->datoEn(i + 1).cedula) i++;
     if (llaves->datoEn(i + 1).cedula == cedula) return true;
     return leaf ? false : (*(C + i))->buscar(cedula);
 }
