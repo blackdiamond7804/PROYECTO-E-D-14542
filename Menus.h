@@ -5,6 +5,8 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
+#include <time.h>
+#include <ctime>
 #include "Lista.h"
 #include "Persona.h"
 #include "Validacion.h"
@@ -13,6 +15,7 @@
 #include "ArbolRB.h"
 #include "ArbolBmas.h"
 #include "ArbolRadix.h"
+#include "BusquedaHash.h"
 
 void setConsoleColor(WORD color);
 void mostrarMenu(int opcion);

@@ -3,14 +3,17 @@
 
 #include <string>
 #include "Persona.h"
+#include "Lista.h"
 
 class Busquedas {
 public:
     Persona* busquedaSecuencial(const std::string& nombreArchivo, const std::string& cedula);
     void imprimirPersona(Persona* persona);
+    
 
 private:
     Persona* buscarCedulaRecursiva(std::ifstream& archivo, const std::string& cedula);
+    
 };
 
 #endif

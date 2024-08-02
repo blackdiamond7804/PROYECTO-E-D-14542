@@ -63,7 +63,9 @@ public:
     void insertarUltimo(Persona persona);
     void ordenarDistribucion(int criterio);
     void InertirPersonas(int criterio);
-   
+    void insertarClaveValor(const char* key, Persona valor);
+    Persona* buscarValor(const char* key);
+
     Nodo* getCabeza();
     Nodo* getCola();
     void setCabeza(Nodo* newCabeza);

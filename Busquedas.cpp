@@ -91,7 +91,7 @@ void Busquedas::imprimirPersona(Persona* persona) {
         cout << "Correo: " << persona->getCorreo() << "@espe.edu.ec"
             << ", Contrasenia inicial: " << persona->getContrasenaInicial()
             << ", Contrasenia: " << persona->getContrasena() << std::endl;
-        delete persona;
+        
     } else {
         cout << "Usuario no encontrado." << endl;
     }

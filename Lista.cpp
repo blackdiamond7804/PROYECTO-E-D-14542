@@ -71,6 +71,32 @@ void Lista::insertar(Persona dato) {
     agregarAlArchivo(dato);
 }
 
+void Lista::insertarClaveValor(const char*key, Persona dato) {
+    Nodo* nuevoNodo = new Nodo(key, dato);
+
+    if (!cabeza) {
+        cabeza = nuevoNodo;
+    }
+    else {
+        Nodo* actual = cabeza;
+        while (actual->siguiente != nullptr) {
+            actual = actual->siguiente;
+        }
+        actual->siguiente = nuevoNodo;
+    }
+}
+
+Persona* Lista::buscarValor(const char* key) {
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        if (strncmp(actual->key, key, sizeof(actual->key)) == 0) {
+            return &(actual->dato);
+        }
+        actual = actual->siguiente;
+    }
+    return nullptr;
+}
+
 void Lista::insertarEn(int indice, Persona dato) {
     if (indice < 1) return;
     Nodo* nuevo = new Nodo(dato);

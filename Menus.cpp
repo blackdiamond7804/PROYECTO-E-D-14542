@@ -1,6 +1,7 @@
 ﻿
 #include "Menus.h"
 
+
 using namespace std;
 
 enum Opciones {
@@ -363,9 +364,21 @@ void menuBusqueda(Lista& lista) {
                 break;
             case BUSQUEDA_BINARIA:
                 cout << "Busqueda binaria" << endl;
+                
                 break;
-            case BUSQUEDA_HASH:
+            case BUSQUEDA_HASH: {
                 cout << "Busqueda hash" << endl;
+                srand(time(NULL));
+                int numAl = rand() % 20 + 1;
+                Hash busquedaHash(numAl);
+                string cedula;
+                cout << "Ingrese la cedula a buscar: ";
+                cin >> cedula;
+                busquedaHash.leerArchivoEInsertarH();
+                Persona* person = busquedaHash.buscarH(cedula.c_str());
+                busquedaHash.imprimirPersona(person);
+                _getch();
+            }
                 break;
             case ATRAS:
                 continuar = false;
