@@ -495,6 +495,13 @@ void menuAdicional(Lista& lista) {
                         ArbolB arbol(t);
                         lista.leerArchivoEInsertarEnArbolB(arbol);
                         arbol.mostrarConPausa();
+
+                        string ced = ingresarCedula();
+
+                        if (arbol.buscar(ced)) std::cout << "La cedula '" << ced << " se encuentra en el arbol." << std::endl;
+                        else std::cout << "La cedula '" << ced << " no se encuentra en el arbol" << std::endl;
+                        _getch();
+
                         break;
                     };
                     case 2: {

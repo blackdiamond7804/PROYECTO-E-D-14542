@@ -56,5 +56,5 @@ bool NodoArbolB::buscar(const std::string& cedula) {
     int i = 0;
     while (i + 1 < n && cedula > llaves->datoEn(i + 1).cedula) i++;
     if (llaves->datoEn(i + 1).cedula == cedula) return true;
-    return leaf ? false : (*(C + i))->buscar(cedula);
+    return leaf ? false : (*(C + i + 1))->buscar(cedula) || (*(C + i))->buscar(cedula);
 }
