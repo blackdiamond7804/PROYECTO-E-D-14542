@@ -65,8 +65,13 @@ public:
     void InertirPersonas(int criterio);
     void insertarClaveValor(const char* key, Persona valor);
     Persona* buscarValor(const char* key);
+    void insertarBin(Persona dato);
+    Persona datoEnI(int) const;
+    int cant() const;
+    Persona* bus(const std::string& key) const;
 
     Nodo* getCabeza();
+    Nodo* getCab() const;
     Nodo* getCola();
     void setCabeza(Nodo* newCabeza);
     void setCola(Nodo* newCola);
@@ -74,7 +79,6 @@ public:
     void contarVocalesYConsonantes(const std::string& texto, int index, int& vocales, int& consonantes) const;
     void MezclaPares() override;
     Nodo* combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio);
-    void leerArchivoEInsertarEnArbolB(ArbolB& arbol);
     void leerArchivoEInsertarEnArbolRB(ArbolRB& arbol);
     void leerArchivoEInsertarEnArbolAA(ArbolAA& arbol);
     void leerArchivoEInsertarEnArbolBmas(ArbolBmas& arbol);

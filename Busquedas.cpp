@@ -96,3 +96,62 @@ void Busquedas::imprimirPersona(Persona* persona) {
         cout << "Usuario no encontrado." << endl;
     }
 }
+
+int Busquedas::LeerArchivoContar() {
+    std::ifstream archivo("Datos_Personas.txt");
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo " << std::endl;
+        return -1;
+    }
+    int contador = 0;
+    std::string nombre, segundoNombre, apellido, cedula, correo, contrasenaInicial, contrasena;
+    std::string dummy;
+    while (archivo >> dummy >> nombre >> segundoNombre >> dummy >> apellido >> dummy >> cedula) {
+        archivo >> dummy >> correo >> dummy >> dummy >> contrasenaInicial >> dummy >> contrasena;
+
+        contador++;
+    }
+    contador;
+    return contador;
+}
+
+void Busquedas::InsertarBinario(const std::string& cedula,Persona persona) {
+    Lista* listaptr;
+    std::string ced;
+    listaptr->insertarBin(persona);
+    intercambioP(listaptr);
+    cout << "Digite la cedula de la persona que desea busca: ";
+    cin >> ced;
+    BusquedaBinar(ced, listaptr);
+}
+
+void Busquedas::BusquedaBinar(std::string& cedula, const Lista& listaptr) {
+    Persona* persona = listaptr.bus(cedula);
+    cout << "La persona encontrada es: " << persona << endl;
+}
+
+void Busquedas::LeerArhivoInsertarBin() {
+    std::ifstream archivo("Datos_Personas.txt");
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo " << std::endl;
+        return;
+    }
+
+    std::string nombre, segundoNombre, apellido, cedula, correo, contrasenaInicial, contrasena;
+    std::string dummy;
+    while (archivo >> dummy >> nombre >> segundoNombre >> dummy >> apellido >> dummy >> cedula) {
+        archivo >> dummy >> correo >> dummy >> dummy >> contrasenaInicial >> dummy >> contrasena;
+        correo = correo.substr(0, correo.find('@'));
+        Persona persona(nombre, segundoNombre == "null" ? "" : segundoNombre, apellido, cedula);
+        persona.setCorreo(correo);
+        persona.setContrasena(contrasena);
+        persona.setContrasenaInicial(contrasenaInicial);
+
+        //std::cout << "Insertando Persona"<<persona.cedula<< "en tabla hash" << std::endl;
+        InsertarBinario(persona.cedula,persona);
+    }
+
+    archivo.close();
+}

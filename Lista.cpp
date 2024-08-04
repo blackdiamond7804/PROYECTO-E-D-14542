@@ -86,6 +86,21 @@ void Lista::insertarClaveValor(const char*key, Persona dato) {
     }
 }
 
+void Lista::insertarBin(Persona dato) {
+    Nodo* nuevoNodo = new Nodo(dato);
+
+    if (!cabeza) {
+        cabeza = nuevoNodo;
+    }
+    else {
+        Nodo* actual = cabeza;
+        while (actual->siguiente != nullptr) {
+            actual = actual->siguiente;
+        }
+        actual->siguiente = nuevoNodo;
+    }
+}
+
 Persona* Lista::buscarValor(const char* key) {
     Nodo* actual = cabeza;
     while (actual != nullptr) {
@@ -96,6 +111,43 @@ Persona* Lista::buscarValor(const char* key) {
     }
     return nullptr;
 }
+
+Persona* Lista::bus(const std::string& key) const{
+    
+    int n = 0;
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        n++;
+        actual = actual->siguiente;
+    }
+
+    int inicio = 0;
+    int fin = n - 1;
+
+    while (inicio <= fin) {
+        int medio = (inicio + fin) / 2;
+
+        
+        actual = cabeza;
+        for (int i = 0; i < medio; ++i) {
+            actual = actual->siguiente;
+        }
+
+       
+        if (actual->key == key) {
+            return &(actual->dato);
+        }
+        else if (actual->key < key) {
+            inicio = medio + 1;
+        }
+        else {
+            fin = medio - 1;
+        }
+    }
+
+    return nullptr;
+}
+
 
 void Lista::insertarEn(int indice, Persona dato) {
     if (indice < 1) return;
@@ -398,8 +450,38 @@ int Lista::cantidad() {
     }
 }
 
+int Lista::cant() const {
+    if (cabeza == nullptr) {
+        return 0;
+    }
+    else {
+        int cant = 0;
+        Nodo* aux = cabeza;
+
+        do {
+            cant++;
+            aux = aux->siguiente;
+        } while (aux != nullptr);
+
+        return cant;
+    }
+}
+
 Persona Lista::datoEn(int posicion) {
     if (cantidad() == 0 || posicion > cantidad()) {
+        std::cout << "No hay ningun nodo" << std::endl;
+        return Persona();
+    }
+
+    Nodo* aux = cabeza;
+
+    for (int i = 1; i < posicion; i++) aux = aux->siguiente;
+
+    return aux->dato;
+}
+
+Persona Lista::datoEnI(int posicion) const {
+    if (cant() == 0 || posicion > cant()) {
         std::cout << "No hay ningun nodo" << std::endl;
         return Persona();
     }
@@ -529,6 +611,10 @@ Nodo* Lista::getCabeza() {
     return cabeza;
 }
 
+Nodo* Lista::getCab() const {
+    return cabeza;
+}
+
 Nodo* Lista::getCola() {
     return cola;
 }
@@ -630,37 +716,6 @@ Nodo* Lista::combinarListas(Nodo* cabeza1, Nodo* cabeza2, int criterio) {
         cabeza2->siguiente = combinarListas(cabeza1, cabeza2->siguiente, criterio);
         return cabeza2;
     }
-}
-
-void Lista::leerArchivoEInsertarEnArbolB(ArbolB& arbol) {
-    std::ifstream archivo(nombreArchivo);
-
-    if (!archivo) {
-        std::cerr << "No se pudo abrir el archivo " << nombreArchivo << std::endl;
-        return;
-    }
-
-    std::string nombre, segundoNombre, apellido, cedula, correo, contrasenaInicial, contrasena;
-    std::string dummy;
-    while (archivo >> dummy >> nombre >> segundoNombre >> dummy >> apellido >> dummy >> cedula) {
-        archivo >> dummy >> correo >> dummy >> dummy >> contrasenaInicial >> dummy >> contrasena;
-        correo = correo.substr(0, correo.find('@'));
-        Persona persona(nombre, segundoNombre == "null" ? "" : segundoNombre, apellido, cedula);
-        persona.setCorreo(correo);
-        persona.setContrasena(contrasena);
-        persona.setContrasenaInicial(contrasenaInicial);
-
-        std::cout << "Intentando insertar: " << persona.cedula << std::endl;
-        if (!arbol.buscar(persona.cedula)) {
-            std::cout << "Insertando: " << persona.cedula << std::endl;
-            arbol.insertar(persona);
-        }
-        else {
-            std::cout << "La cedula ya esta registrada: " << persona.cedula << std::endl;
-        }
-    }
-
-    archivo.close();
 }
 
 void Lista::leerArchivoEInsertarEnArbolRB(ArbolRB & arbol) {

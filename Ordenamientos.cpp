@@ -419,6 +419,29 @@ void intercambioPersonas(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio
     }
 }
 
+void intercambioP(const Lista& lista) {
+    if (!lista.getCab()) return; // Lista vacía
+
+    bool swapped;
+    Nodo* ptr1;
+    Nodo* lptr = nullptr;
+
+    do {
+        swapped = false;
+        ptr1 = lista.getCab();
+
+        while (ptr1->siguiente != lptr) {
+            if (ptr1->dato.cedula > ptr1->siguiente->dato.cedula) {
+
+                std::swap(ptr1->dato, ptr1->siguiente->dato);
+                swapped = true;
+            }
+            ptr1 = ptr1->siguiente;
+        }
+        lptr = ptr1;
+    } while (swapped);
+}
+
 void intercambio(std::string& str) {
     bool swapped;
     for (size_t i = 0; i < str.size() - 1; ++i) {

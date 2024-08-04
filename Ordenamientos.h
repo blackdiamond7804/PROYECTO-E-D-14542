@@ -27,4 +27,5 @@ void intercambio(std::string& str);
 void BucketSort(Nodo*& cabeza, Nodo*& cola, bool esCircular, int n);
 void invertirStringDesdeIndice(string& str, int indice);
 void inversoString(Nodo* cabeza, Nodo* cola, bool esCircular, int criterio);
+void intercambioP(const Lista& lista);
 #endif // ORDENAMIENTOS_H

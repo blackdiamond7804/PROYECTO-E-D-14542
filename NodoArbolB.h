@@ -2,24 +2,27 @@
 #define NODOARBOLB_H
 
 #include <string>
+#include <iostream>
 #include "Persona.h"
-class Lista;
 
-class NodoArbolB {
-public:
-	Lista* llaves;//son las claves
-	int t;//grado minimo
-	NodoArbolB** C;
-	int n;
-	bool leaf;
-
-	NodoArbolB(int t1, bool leaf1);
-
-	bool buscar(const std::string& k);
-	void InsertarNodoLleno(Persona k);
-	void splitChild(int i, NodoArbolB* y);
-	void imprimirArbolB(int indent = 4);
-
+struct stclave {
+	std::string cedula;
+	Persona persona;
 };
+
+class bnodo {
+private:
+	int clavesUsadas;
+	stclave* clave;
+	bnodo** puntero;
+	bnodo* padre;
+
+	friend class btree;
+public:
+	bnodo(int nClaves);
+	~bnodo();
+};
+
+typedef bnodo* pbnodo;
 
 #endif

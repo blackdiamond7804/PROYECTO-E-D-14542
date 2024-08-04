@@ -4,14 +4,26 @@
 #include "NodoArbolB.h"
 #include "Persona.h" 
 
-class ArbolB {
+class btree {
+private:
+	stclave* lista;
+	pbnodo* listapunt;
+	void Inserta(stclave clave, pbnodo nodo, pbnodo hijo1, pbnodo hijo2);
+	//void BorrarClave(pbnodo nodo, int valor);
+	void BorrarNodo(pbnodo nodo);
+	//void PasarClaveDerecha(pbnodo derecha, pbnodo padre, pbnodo nodo, int posClavePadre);
+	//void PasarClaveIzquierda(pbnodo izquierda, pbnodo padre, pbnodo nodo, int posClavePadre);
+	//void FundirNodo(pbnodo izquierda, pbnodo& padre, pbnodo derecha, int posClavePadre);
+	void Ver(pbnodo nodo);
+	
+	int nClaves, nodosMinimos;
+	pbnodo Entrada;
 public:
-	NodoArbolB* root;//puntero a a raiz
-	int t;
-
-	ArbolB(int _t) : root(nullptr), t(_t){}
-	bool buscar(std::string cedula);
-	void insertar(Persona k);
-	void imprimirArbolB() const { if (root != nullptr) root->imprimirArbolB(); }
-	void mostrarConPausa() const;
+	btree(int nClv);
+	~btree();
+	//Persona Buscar(std::string cedula);
+	bool InsertarA(stclave clave);
+	//void Borrar(std::string cedula);
+	void Mostrar();
+	void InsertarEnArbolBDesdeArchivo();
 };

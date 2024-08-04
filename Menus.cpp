@@ -363,7 +363,13 @@ void menuBusqueda(Lista& lista) {
             }  
                 break;
             case BUSQUEDA_BINARIA:
+            {
                 cout << "Busqueda binaria" << endl;
+                Busquedas busquedas;
+                busquedas.LeerArhivoInsertarBin();
+
+                _getch();
+            }
                 
                 break;
             case BUSQUEDA_HASH: {
@@ -502,18 +508,14 @@ void menuAdicional(Lista& lista) {
 
                 switch (arbolopcion) {
                     case 1: {
-                        int t;
-                        cout << "Digite el grado del arbol: " << endl;
-                        cin >> t;
-                        ArbolB arbol(t);
-                        lista.leerArchivoEInsertarEnArbolB(arbol);
-                        arbol.mostrarConPausa();
+                        //int t;
+                        //cout << "Digite el grado del arbol: " << endl;
+                        //cin >> t;
+                        btree arbol(3);
 
-                        string ced = ingresarCedula();
+                        arbol.InsertarEnArbolBDesdeArchivo();
 
-                        if (arbol.buscar(ced)) std::cout << "La cedula '" << ced << " se encuentra en el arbol." << std::endl;
-                        else std::cout << "La cedula '" << ced << " no se encuentra en el arbol" << std::endl;
-                        _getch();
+                        arbol.Mostrar();
 
                         break;
                     };
