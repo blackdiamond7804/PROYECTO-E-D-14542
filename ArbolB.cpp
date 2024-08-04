@@ -102,6 +102,7 @@ bool btree::InsertarA(stclave clave)
 	return true;
 }
 
+// Ajuste en la redistribución de claves y punteros
 void btree::Inserta(stclave clave, pbnodo nodo, pbnodo hijo1, pbnodo hijo2) {
 	pbnodo padre, nuevo;
 	int i, j;
@@ -115,10 +116,8 @@ void btree::Inserta(stclave clave, pbnodo nodo, pbnodo hijo1, pbnodo hijo2) {
 			Entrada = nodo;
 		}
 		padre = nodo->padre;
-		if (nodo->clavesUsadas == nClaves) { // Desbordamiento
-			cout << "Nodo desbordado, creando nuevo nodo derecho" << endl;
 
-			// Nodo derecho
+		if (nodo->clavesUsadas == nClaves) { // Desbordamiento
 			nuevo = new bnodo(nClaves);
 
 			// Construir la lista ordenada con la nueva clave
@@ -132,40 +131,41 @@ void btree::Inserta(stclave clave, pbnodo nodo, pbnodo hijo1, pbnodo hijo2) {
 			*(listapunt + i) = hijo1;
 			*(listapunt + i + 1) = hijo2;
 
+			// Copiar las claves restantes
 			while (i < nClaves) {
 				*(lista + i + 1) = *(nodo->clave + i);
 				*(listapunt + i + 2) = *(nodo->puntero + i + 1);
 				i++;
 			}
 
-			// Nodo izquierdo:
-			nodo->clavesUsadas = nClaves / 2;
+			// Redistribuir claves y punteros en los nodos izquierdo y derecho
+			nodo->clavesUsadas = (nClaves + 1) / 2;
 			for (j = 0; j < nodo->clavesUsadas; j++) {
 				*(nodo->clave + j) = *(lista + j);
 				*(nodo->puntero + j) = *(listapunt + j);
 			}
 			*(nodo->puntero + nodo->clavesUsadas) = *(listapunt + nodo->clavesUsadas);
 
-			// Nodo derecho:
-			nuevo->clavesUsadas = nClaves - nodo->clavesUsadas - 1;
+			nuevo->clavesUsadas = nClaves - nodo->clavesUsadas;
 			for (j = 0; j < nuevo->clavesUsadas; j++) {
 				*(nuevo->clave + j) = *(lista + j + nodo->clavesUsadas + 1);
 				*(nuevo->puntero + j) = *(listapunt + j + nodo->clavesUsadas + 1);
 			}
 			*(nuevo->puntero + nuevo->clavesUsadas) = *(listapunt + nClaves + 1);
 
-			// Actualizar punteros de padre
-			for (j = 0; j <= nodo->clavesUsadas; j++)
+			for (j = 0; j <= nodo->clavesUsadas; j++) {
 				if (*(nodo->puntero + j)) (*(nodo->puntero + j))->padre = nodo;
-			for (j = 0; j <= nuevo->clavesUsadas; j++)
+			}
+			for (j = 0; j <= nuevo->clavesUsadas; j++) {
 				if (*(nuevo->puntero + j)) (*(nuevo->puntero + j))->padre = nuevo;
+			}
 
 			clave = *(lista + nodo->clavesUsadas);
 			hijo1 = nodo;
 			hijo2 = nuevo;
 			nodo = padre;
 
-			if (!nodo) {  // Crear nuevo nodo raíz si no hay padre
+			if (!nodo) {
 				nodo = new bnodo(nClaves);
 				nodo->clave[0] = clave;
 				nodo->puntero[0] = hijo1;
@@ -174,11 +174,10 @@ void btree::Inserta(stclave clave, pbnodo nodo, pbnodo hijo1, pbnodo hijo2) {
 				hijo1->padre = nodo;
 				hijo2->padre = nodo;
 				Entrada = nodo;
-				salir = true;  // Salir ya que se ha creado la nueva raíz
+				salir = true;
 			}
 		}
 		else {
-			// Insertar nueva clave en su lugar:
 			i = 0;
 			if (nodo->clavesUsadas > 0) {
 				while (i < nodo->clavesUsadas && (*(nodo->clave + i)).cedula < clave.cedula) i++;
@@ -199,6 +198,13 @@ void btree::Inserta(stclave clave, pbnodo nodo, pbnodo hijo1, pbnodo hijo2) {
 }
 
 
+
+
+
+
+
+
+
 void btree::InsertarEnArbolBDesdeArchivo() {
 	std::ifstream archivo("Datos_Personas.txt");
 
@@ -216,14 +222,15 @@ void btree::InsertarEnArbolBDesdeArchivo() {
 		Persona persona(nombre, segundoNombre == "null" ? "" : segundoNombre, apellido, cedula);
 
 		// Insertar el objeto Persona en el árbol 
-		stclave clave;
+        std::cout << "Intentando insertar: " << nombre << " " << segundoNombre << apellido << std::endl;
+        stclave clave;
 		clave.cedula = cedula;
 		clave.persona = persona;
 			if (!InsertarA(clave)) {
 				cerr << "Error al insertar clave: " << cedula << endl;
 			}
 
-		std::cout << "Intentando insertar: " << nombre << " " << segundoNombre << apellido << std::endl;
+		
 	}
 
 	archivo.close();

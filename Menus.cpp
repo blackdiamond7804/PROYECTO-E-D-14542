@@ -508,10 +508,10 @@ void menuAdicional(Lista& lista) {
 
                 switch (arbolopcion) {
                     case 1: {
-                        //int t;
-                        //cout << "Digite el grado del arbol: " << endl;
-                        //cin >> t;
-                        btree arbol(3);
+                        int t;
+                        cout << "Digite el grado del arbol: " << endl;
+                        cin >> t;
+                        btree arbol(t);
 
                         arbol.InsertarEnArbolBDesdeArchivo();
 
