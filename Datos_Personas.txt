@@ -12,3 +12,9 @@ Nombre: Camilo Juan, Apellido: Velazques, Cedula: 1723077382
 Correo: cjVelazques@espe.edu.ec, Contrasenia inicial: scneuqzalev2, Contrasenia: uepgwsbcngx
 Nombre: Sebas Henry, Apellido: Caiza, Cedula: 1709839664
 Correo: shCaiza@espe.edu.ec, Contrasenia inicial: asyziac3, Contrasenia: cuabkce
+Nombre: Napoleon Gustavo, Apellido: Cepeda, Cedula: 0602921033
+Correo: ngCepeda@espe.edu.ec, Contrasenia inicial: anodepec1, Contrasenia: cpqfgrge
+Nombre: David Gustavo, Apellido: Cepeda, Cedula: 0605945104
+Correo: dgCepeda@espe.edu.ec, Contrasenia inicial: adodepec, Contrasenia: cfqfgrge
+Nombre: Sara Marlene, Apellido: Salguero, Cedula: 0603267923
+Correo: smSalguero@espe.edu.ec, Contrasenia inicial: osereuglas2, Contrasenia: qugtgwincu

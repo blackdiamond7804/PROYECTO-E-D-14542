@@ -51,6 +51,10 @@ public:
     void cargarDesdeArchivo(const std::string& nombreArchivo);
     void insertarDesdeArchivo(Persona dato);
     void agregarAlArchivo(const Persona& dato) const;
+    void ordenarPorCedula();
+    void limpiar();
+    void imprimirPersona(const Persona* persona) const;
+
 
     void ordenarInverso(int criterio);
     void eliminar(int);

@@ -362,16 +362,18 @@ void menuBusqueda(Lista& lista) {
                 _getch();
             }  
                 break;
-            case BUSQUEDA_BINARIA:
-            {
+            case BUSQUEDA_BINARIA: {
                 cout << "Busqueda binaria" << endl;
-                Busquedas busquedas;
-                busquedas.LeerArhivoInsertarBin();
-
+                string cedula;
+                cout << "Ingrese la cedula a buscar: ";
+                cin >> cedula;
+                lista.cargarDesdeArchivo("Datos_Personas.txt"); // Cargar los datos desde el archivo
+                lista.ordenarPorCedula();  // Ordenar la lista antes de la búsqueda binaria
+                Persona* persona = lista.bus(cedula); // Realizar la búsqueda binaria
+                lista.imprimirPersona(persona);
                 _getch();
             }
-                
-                break;
+               break;
             case BUSQUEDA_HASH: {
                 cout << "Busqueda hash" << endl;
                 srand(time(NULL));

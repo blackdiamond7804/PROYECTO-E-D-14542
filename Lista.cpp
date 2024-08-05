@@ -112,8 +112,7 @@ Persona* Lista::buscarValor(const char* key) {
     return nullptr;
 }
 
-Persona* Lista::bus(const std::string& key) const{
-    
+Persona* Lista::bus(const std::string& key) const {
     int n = 0;
     Nodo* actual = cabeza;
     while (actual != nullptr) {
@@ -127,17 +126,15 @@ Persona* Lista::bus(const std::string& key) const{
     while (inicio <= fin) {
         int medio = (inicio + fin) / 2;
 
-        
         actual = cabeza;
         for (int i = 0; i < medio; ++i) {
             actual = actual->siguiente;
         }
 
-       
-        if (actual->key == key) {
+        if (actual->dato.cedula == key) {
             return &(actual->dato);
         }
-        else if (actual->key < key) {
+        else if (actual->dato.cedula < key) {
             inicio = medio + 1;
         }
         else {
@@ -147,7 +144,6 @@ Persona* Lista::bus(const std::string& key) const{
 
     return nullptr;
 }
-
 
 void Lista::insertarEn(int indice, Persona dato) {
     if (indice < 1) return;
@@ -357,6 +353,8 @@ void Lista::guardarEnArchivo(const std::string& nombreArchivo) const {
 }
 
 void Lista::cargarDesdeArchivo(const std::string& nombreArchivo) {
+    limpiar();
+    
     std::ifstream archivo(nombreArchivo);
 
     if (!archivo) {
@@ -376,6 +374,54 @@ void Lista::cargarDesdeArchivo(const std::string& nombreArchivo) {
         insertarDesdeArchivo(persona);
     }
 }
+
+void Lista::imprimirPersona(const Persona* persona) const {
+    if (persona == nullptr) {
+        std::cout << "Usuario no encontrado." << std::endl;
+        return;
+    }
+
+    std::cout << "Cedula Encontrada!" << std::endl;
+    std::cout << "Nombre: " << persona->nombre << ", Segundo Nombre: " << persona->segundoNombre << ", Apellido: " << persona->apellido << std::endl;
+    std::cout << "Correo: " << persona->getCorreo() << ", Contrasena inicial: " << persona->getContrasenaInicial() << ", Contrasena: " << persona->getContrasena() << std::endl;
+}
+
+
+
+void Lista::ordenarPorCedula() {
+    if (!cabeza) return;
+
+    bool swapped;
+    Nodo* ptr1;
+    Nodo* lptr = nullptr;
+
+    do {
+        swapped = false;
+        ptr1 = cabeza;
+
+        while (ptr1->siguiente != lptr) {
+            if (ptr1->dato.cedula > ptr1->siguiente->dato.cedula) {
+                std::swap(ptr1->dato, ptr1->siguiente->dato);
+                swapped = true;
+            }
+            ptr1 = ptr1->siguiente;
+        }
+        lptr = ptr1;
+    } while (swapped);
+}
+
+void Lista::limpiar() {
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        Nodo* siguiente = actual->siguiente;
+        delete actual;
+        actual = siguiente;
+    }
+    cabeza = nullptr;
+    cola = nullptr;
+    cedulasRegistradas.clear();
+}
+
 
 void Lista::insertarDesdeArchivo(Persona dato) {
     Nodo* nuevo = new Nodo(dato);
